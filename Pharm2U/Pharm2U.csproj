@@ -65,12 +65,22 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="IoC\IoCContainer.cs" />
-    <Compile Include="Services\Data\MockDataService.cs" />
+    <Compile Include="Models\Data\Customer.cs" />
+    <Compile Include="Models\Data\Food.cs" />
+    <Compile Include="Models\Data\OTC.cs" />
+    <Compile Include="Models\OrderModel.cs" />
+    <Compile Include="Services\Data\IDataService.cs" />
+    <Compile Include="Services\Data\MockData\MockOrderDataService.cs" />
     <Compile Include="Services\IDatabaseManager.cs" />
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\IFileManager.cs" />
+    <Compile Include="Services\INetworkManager.cs" />
     <Compile Include="Services\IPrinterManager.cs" />
+    <Compile Include="Utilities\ObservableObject.cs" />
+    <Compile Include="Utilities\RelayCommand.cs" />
+    <Compile Include="Utilities\VisualTreeHelperExtensions.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
+    <Compile Include="ViewModels\DataViewModels\OrderViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -113,7 +123,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Views\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

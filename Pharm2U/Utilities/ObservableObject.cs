@@ -31,14 +31,15 @@ namespace Pharm2U.Utilities
         /// <param name="value">the value of the new change</param>
         /// <param name="propertyName">the name to register the change.</param>
         /// <returns></returns>
-        protected virtual bool OnPropertyChanged<T>(ref T backingField, T value, [CallerMemberName] string propertyName = "")
+        protected virtual void OnPropertyChanged<T>(ref T backingField, T value, [CallerMemberName] string propertyName = "")
         {
+            // If the data is unchanged, return with out setting a value
             if (EqualityComparer<T>.Default.Equals(backingField, value))
-                return false;
+                return;
 
             backingField = value;
             OnPropertyChanged(propertyName);
-            return true;
+            return;
         }
     }
 
