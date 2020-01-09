@@ -2,8 +2,14 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Pharm2U"
-             StartupUri="MainWindow.xaml">
+             >
     <Application.Resources>
-         
+
+        <!-- Added two styles simply to eliminate the VS bug that 
+             can occur when only one resource is defined
+             and the Application.OnStartup is overridden.
+             This bug does not occur if a StartupUI is given, only when its removed.-->
+        <Style x:Key="unused1"/>
+        <Style x:Key="unused2"/>
     </Application.Resources>
 </Application>

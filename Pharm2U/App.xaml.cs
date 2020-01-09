@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Pharm2U.IoC;
 using System.Windows;
 
 namespace Pharm2U
@@ -13,5 +8,21 @@ namespace Pharm2U
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// Override the OnStartup functionality so that we can setup Ninject for dependency inject
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            // Allow the base system to startup as normal
+            base.OnStartup(e);
+
+            // Setup our dependency injection for Inversion of Control (IoC)
+            IoCContainer.Setup();
+
+            // Now creat our main application window
+            Current.MainWindow = new MainWindow();
+            Current.MainWindow.Show();
+        }
     }
 }
