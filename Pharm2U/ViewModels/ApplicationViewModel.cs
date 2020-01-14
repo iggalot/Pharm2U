@@ -8,9 +8,16 @@ namespace Pharm2U.ViewModels
     public class ApplicationViewModel
     {
         /// <summary>
+        /// A name for our Application View Model
+        /// </summary>
+        public string Name { get; set; } = "Application View Model";
+
+        /// <summary>
         /// Our order model dataservice
         /// </summary>
-        public IDataService<OrderModel> OrderData;
+        public IDataService<OrderModel> OrderData {get; set;}
+
+
 
         /// <summary>
         /// Constructor for our ApplicationViewModel

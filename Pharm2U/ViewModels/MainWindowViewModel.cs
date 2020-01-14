@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Pharm2U.ViewModels
+﻿namespace Pharm2U.ViewModels
 {
-    class MainWindowViewModel
+    /// <summary>
+    /// The view model that controls the appearance of our main window
+    /// </summary>
+    public class MainWindowViewModel
     {
     }
 }

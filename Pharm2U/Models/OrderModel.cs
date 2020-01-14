@@ -16,6 +16,7 @@ namespace Pharm2U.Models
         /// </summary>
         public int Id { get; private set; }
 
+        public string Name { get; set; }
         /// <summary>
         /// Customer data for who placed this order
         /// </summary>
@@ -54,6 +55,8 @@ namespace Pharm2U.Models
             Customer = customer;
             FoodItems = food_items;
             OTCItems = otc_items;
+
+            Name = "Order" + Id;
 
         }
         #endregion

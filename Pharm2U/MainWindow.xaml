@@ -4,9 +4,64 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pharm2U"
+        xmlns:v="clr-namespace:Pharm2U.Views"
+        xmlns:convert="clr-namespace:Pharm2U.ValueConverters"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" 
+
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight"
+        >
+    <Window.Resources>
+        <convert:ApplicationToDataModelConverter x:Key="AppToDCConverter"/>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!-- Menu -->
+        <Label Grid.Row="0"  Content="Main Menu" Background="Teal"/>
+
+        <!-- Toolbar -->
+        <Label Grid.Row="1" Content="Toolbar" Background="LightBlue" />
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="800"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- List Area -->
+                <Border  Grid.Column="0" Width="Auto">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="List Area" Background="LightGray" />
+                        <ScrollViewer>
+                            <v:OrderListView DataContext="{Binding Converter={StaticResource AppToDCConverter}}"/>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Border>
+
+                <!-- Details Area -->
+                <Border Grid.Column="1" Width="Auto">
+                    <StackPanel>
+                        <TextBlock Text="Details" Background="LightGray" />
+                        <ScrollViewer >
+                            <Grid>
+                                <v:OrderListView DataContext="{Binding Converter={StaticResource AppToDCConverter}}"/>
+                            </Grid>
+                        </ScrollViewer>
+                    </StackPanel>
+                    
+
+                </Border>
+            </Grid>
+        </StackPanel>
+
+        <!-- Status Bar -->
+        <Label Grid.Row="3" DockPanel.Dock="Bottom" Content="Status Bar" Background="LightBlue" />
     </Grid>
 </Window>
