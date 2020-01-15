@@ -1,28 +1,28 @@
-﻿<UserControl x:Class="Pharm2U.Views.OrderListView"
+﻿<UserControl x:Class="Pharm2U.Views.Orders.OrderListView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Pharm2U.Views"
+             xmlns:local="clr-namespace:Pharm2U.Views.Orders"
              xmlns:controls="clr-namespace:Pharm2U.Controls"
+             xmlns:m="clr-namespace:Pharm2U.Models"
+             xmlns:vm="clr-namespace:Pharm2U.ViewModels"
+             xmlns:v="clr-namespace:Pharm2U.Views.Orders"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              >
-    
     <Grid>
-        <Border Padding="5" Background="White">
+        <Border Padding="2" Background="White">
             <StackPanel Orientation="Vertical" Background="Aquamarine">
                 <!-- The Main List -->
-                <ListBox Name="ICOrderList" DataContext="{Binding OrderData}" ItemsSource="{Binding Data}">
-                    <ListBox.ItemTemplate>
+                <ListView Name="MainOrderList" ItemsSource="{Binding OrdersVM.Orders}">
+                    <ListView.ItemTemplate>
                         <DataTemplate>
-                            <controls:OrderListItemControl />
+                            <v:OrdersView />
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackPanel>
-
         </Border>
-
     </Grid>
 </UserControl>

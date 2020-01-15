@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pharm2U"
-        xmlns:v="clr-namespace:Pharm2U.Views"
+        xmlns:v="clr-namespace:Pharm2U.Views.Orders"
+        xmlns:vm="clr-namespace:Pharm2U.ViewModels"
         xmlns:convert="clr-namespace:Pharm2U.ValueConverters"
         mc:Ignorable="d"
         Title="MainWindow" 
@@ -15,6 +16,10 @@
     <Window.Resources>
         <convert:ApplicationToDataModelConverter x:Key="AppToDCConverter"/>
     </Window.Resources>
+    <Window.DataContext>
+        <vm:ApplicationViewModel />
+    </Window.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -38,9 +43,10 @@
                 <!-- List Area -->
                 <Border  Grid.Column="0" Width="Auto">
                     <StackPanel Orientation="Vertical">
+                        <Button Content="Show Orders" Command="{Binding OrderListVM.LoadOrdersCommand}"/>
                         <TextBlock Text="List Area" Background="LightGray" />
                         <ScrollViewer>
-                            <v:OrderListView DataContext="{Binding Converter={StaticResource AppToDCConverter}}"/>
+                            <v:OrderListView DataContext="{Binding CurrentOrderListVM}"/>
                         </ScrollViewer>
                     </StackPanel>
                 </Border>
@@ -51,16 +57,15 @@
                         <TextBlock Text="Details" Background="LightGray" />
                         <ScrollViewer >
                             <Grid>
-                                <v:OrderListView DataContext="{Binding Converter={StaticResource AppToDCConverter}}"/>
+                                <TextBlock Text="PLACEHOLDER"/>
+                                <!--<v:OrderListView DataContext="{Binding Converter={StaticResource AppToDCConverter}}"/>-->
                             </Grid>
                         </ScrollViewer>
                     </StackPanel>
-                    
-
                 </Border>
             </Grid>
         </StackPanel>
-
+        
         <!-- Status Bar -->
         <Label Grid.Row="3" DockPanel.Dock="Bottom" Content="Status Bar" Background="LightBlue" />
     </Grid>

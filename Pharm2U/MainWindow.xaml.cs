@@ -12,8 +12,6 @@ namespace Pharm2U
         {
             InitializeComponent();
 
-            // Set the data context for the main window
-            DataContext = new MainWindowViewModel();
         }
     }
 }
