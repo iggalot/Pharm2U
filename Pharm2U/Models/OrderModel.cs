@@ -33,6 +33,8 @@ namespace Pharm2U.Models
         public ObservableCollection<OTC> OTCItems { get; private set; } = new ObservableCollection<OTC>();
         #endregion
 
+        public int Status { get; private set; } = (int)OrderStatus.STATUS_UNKNOWN;
+
         #region Default constructors
         /// <summary>
         /// Parameterless constructor (for templating)
@@ -49,12 +51,14 @@ namespace Pharm2U.Models
         /// <param name="customer">customer class object</param>
         /// <param name="food_items">food items list</param>
         /// <param name="otc_items">otc items list</param>
-        public OrderModel(int id, Customer customer, ObservableCollection<Food> food_items, ObservableCollection<OTC> otc_items)
+        /// <param name="status">the current status of the order</param>
+        public OrderModel(int id, Customer customer, ObservableCollection<Food> food_items, ObservableCollection<OTC> otc_items, OrderStatus status = OrderStatus.STATUS_UNKNOWN)
         {
             Id = id;
             Customer = customer;
             FoodItems = food_items;
             OTCItems = otc_items;
+            Status = (int)status;
 
             Name = "Order" + Id;
 
@@ -74,7 +78,7 @@ namespace Pharm2U.Models
             foreach (Food item in FoodItems)
                 str += item.ToString() + "\n";
 
-            str += $"-- OTC Items ({FoodItems.Count}): \n";
+            str += $"-- OTC Items ({OTCItems.Count}): \n";
             foreach (OTC item in OTCItems)
                 str += item.ToString() + "\n";
 

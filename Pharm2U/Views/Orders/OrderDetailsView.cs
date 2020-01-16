@@ -5,9 +5,9 @@ namespace Pharm2U.Views.Orders
     /// <summary>
     /// Interaction logic for OrdersView.xaml
     /// </summary>
-    public partial class OrdersView : UserControl
+    public partial class OrderDetailsView : UserControl
     {
-        public OrdersView()
+        public OrderDetailsView()
         {
             InitializeComponent();
         }

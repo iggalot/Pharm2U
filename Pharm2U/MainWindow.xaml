@@ -11,7 +11,6 @@
         Title="MainWindow" 
 
         WindowStartupLocation="CenterScreen"
-        SizeToContent="WidthAndHeight"
         >
     <Window.Resources>
         <convert:ApplicationToDataModelConverter x:Key="AppToDCConverter"/>
@@ -19,54 +18,51 @@
     <Window.DataContext>
         <vm:ApplicationViewModel />
     </Window.DataContext>
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition />
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+
+    <DockPanel>
         <!-- Menu -->
-        <Label Grid.Row="0"  Content="Main Menu" Background="Teal"/>
+        <Label DockPanel.Dock="Top" Content="Main Menu" Background="Teal"/>
 
         <!-- Toolbar -->
-        <Label Grid.Row="1" Content="Toolbar" Background="LightBlue" />
+        <Label DockPanel.Dock="Top" Content="Toolbar" Background="LightBlue" />
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="800"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <!-- List Area -->
-                <Border  Grid.Column="0" Width="Auto">
-                    <StackPanel Orientation="Vertical">
-                        <Button Content="Show Orders" Command="{Binding OrderListVM.LoadOrdersCommand}"/>
-                        <TextBlock Text="List Area" Background="LightGray" />
-                        <ScrollViewer>
-                            <v:OrderListView DataContext="{Binding CurrentOrderListVM}"/>
-                        </ScrollViewer>
-                    </StackPanel>
-                </Border>
-
-                <!-- Details Area -->
-                <Border Grid.Column="1" Width="Auto">
-                    <StackPanel>
-                        <TextBlock Text="Details" Background="LightGray" />
-                        <ScrollViewer >
-                            <Grid>
-                                <TextBlock Text="PLACEHOLDER"/>
-                                <!--<v:OrderListView DataContext="{Binding Converter={StaticResource AppToDCConverter}}"/>-->
-                            </Grid>
-                        </ScrollViewer>
-                    </StackPanel>
-                </Border>
-            </Grid>
-        </StackPanel>
-        
         <!-- Status Bar -->
-        <Label Grid.Row="3" DockPanel.Dock="Bottom" Content="Status Bar" Background="LightBlue" />
-    </Grid>
+        <Label DockPanel.Dock="Bottom" Content="Status Bar" Background="LightBlue" />
+
+        <!-- Display Areas-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <Border Grid.Column="0">
+                <!-- List Area -->
+                <StackPanel Orientation="Vertical" Grid.Column="0">
+                    <Button Content="Show Orders" Command="{Binding OrderListVM.LoadOrdersCommand}"/>
+                    <ScrollViewer>
+                        <v:OrderListView DataContext="{Binding CurrentOrderListVM}" />
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1">
+                <!-- Details Area -->
+                <StackPanel Orientation="Vertical" Grid.Column="1">
+                    <TextBlock Text="Details" Background="LightGray" />
+                    <ScrollViewer 
+                        Height="{Binding RelativeSource={RelativeSource FindAncestor, 
+                        AncestorType={x:Type Grid}},Path=ActualHeight}"
+                        >
+                        <Grid>
+                            <v:OrderDetailsView DataContext="{Binding CurrentOrderListVM.OrdersVM.SelectedOrder}" />
+                        </Grid>
+                    </ScrollViewer>
+                </StackPanel>
+            </Border>
+        </Grid>
+        
+        
+
+    </DockPanel>
 </Window>

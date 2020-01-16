@@ -26,7 +26,6 @@ namespace Pharm2U.ViewModels.DataViewModels
             get => _ordersVM;
             set { OnPropertyChanged(ref _ordersVM, value); }
         }
-
         #endregion
 
         #region Constructor

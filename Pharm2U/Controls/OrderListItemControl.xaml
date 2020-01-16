@@ -6,7 +6,29 @@
              xmlns:local="clr-namespace:Pharm2U.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <TextBlock Text="{Binding Path=Name}"/>
-    </StackPanel>
+    <Grid 
+        Width="{Binding RelativeSource={RelativeSource FindAncestor, 
+        AncestorType={x:Type ScrollViewer}},Path=ActualWidth}" Height="Auto"
+        >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="A"/>
+            <ColumnDefinition SharedSizeGroup="A"/>
+            <ColumnDefinition SharedSizeGroup="A"/>
+            <ColumnDefinition SharedSizeGroup="A"/>
+            <ColumnDefinition SharedSizeGroup="A"/>
+            <ColumnDefinition SharedSizeGroup="A"/>
+            <ColumnDefinition SharedSizeGroup="A"/>
+            <ColumnDefinition SharedSizeGroup="A"/>
+            <ColumnDefinition SharedSizeGroup="A"/>
+            <ColumnDefinition SharedSizeGroup="A"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Order and Customer information -->
+        <TextBlock Grid.Column="0"  Text="{Binding Id, FallbackValue='Error'}"             Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Grid.Column="1"  Text="{Binding NewOrderCreatedWhen, FallbackValue='Error'}" Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Grid.Column="2"  Text="{Binding Customer.Id, FallbackValue='Error'}"          Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Grid.Column="3"  Text="{Binding Customer.FirstName, FallbackValue='Error'}"           Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Grid.Column="4"  Text="{Binding Customer.LastName, FallbackValue='Error'}"            Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBlock Grid.Column="9"  Text="{Binding Status, FallbackValue='Error'}"              Foreground="Black" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+    </Grid>
 </UserControl>

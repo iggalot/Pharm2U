@@ -11,18 +11,45 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              >
-    <Grid>
-        <Border Padding="2" Background="White">
-            <StackPanel Orientation="Vertical" Background="Aquamarine">
-                <!-- The Main List -->
-                <ListView Name="MainOrderList" ItemsSource="{Binding OrdersVM.Orders}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <v:OrdersView />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackPanel>
-        </Border>
-    </Grid>
+
+    <Border Grid.Column="0" Grid.ColumnSpan="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="A" />
+                <ColumnDefinition SharedSizeGroup="A"/>
+                <ColumnDefinition SharedSizeGroup="A"/>
+                <ColumnDefinition SharedSizeGroup="A"/>
+                <ColumnDefinition SharedSizeGroup="A"/>
+                <ColumnDefinition SharedSizeGroup="A"/>
+                <ColumnDefinition SharedSizeGroup="A"/>
+                <ColumnDefinition SharedSizeGroup="A"/>
+                <ColumnDefinition SharedSizeGroup="A"/>
+                <ColumnDefinition SharedSizeGroup="A"/>
+            </Grid.ColumnDefinitions>
+            <!-- Header info-->
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Order #"    Foreground="Black" FontWeight="Bold" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="Created"    Foreground="Black" FontWeight="Bold" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="CustomerID" Foreground="Black" FontWeight="Bold" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="0" Grid.Column="3" Text="First Name" Foreground="Black" FontWeight="Bold" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="0" Grid.Column="4" Text="Last Name"  Foreground="Black" FontWeight="Bold" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBlock Grid.Row="0" Grid.Column="9" Text="Status"     Foreground="Black" FontWeight="Bold" FontSize="8" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+            <!--The Main List-->
+            <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="10" Name="MainOrderList" 
+                      ItemsSource="{Binding OrdersVM.Orders}" SelectedItem="{Binding OrdersVM.SelectedOrder}"
+                      >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:OrderListItemControl />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Border>
+
 </UserControl>
