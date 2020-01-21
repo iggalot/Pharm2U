@@ -49,7 +49,7 @@ namespace Pharm2U.ViewModels.DataViewModels
         /// </summary>
         private void LoadOrders(object obj)
         {
-            OrdersVM.LoadOrders(_dataService.GetData());
+            OrdersVM.LoadOrders(_dataService.LoadData());
         }
 
         #endregion
@@ -75,7 +75,7 @@ namespace Pharm2U.ViewModels.DataViewModels
         {
             string str = String.Empty;
 
-            foreach(OrderModel item in _dataService.GetData())
+            foreach(OrderModel item in _dataService.LoadData())
             {
                 str += item.Display() + "\n";
             }

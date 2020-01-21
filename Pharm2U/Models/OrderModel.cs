@@ -1,4 +1,5 @@
 ﻿using Pharm2U.Models.Data;
+using Pharm2U.Services.Data.EntityFramework;
 using Pharm2U.Utilities;
 using System;
 using System.Collections.ObjectModel;
@@ -10,6 +11,10 @@ namespace Pharm2U.Models
     /// </summary>
     public class OrderModel : ObservableObject
     {
+        #region Private Members
+
+        #endregion
+
         #region Public Properties
         /// <summary>
         /// Id number for this ordert
@@ -54,6 +59,10 @@ namespace Pharm2U.Models
         /// <param name="status">the current status of the order</param>
         public OrderModel(int id, Customer customer, ObservableCollection<Food> food_items, ObservableCollection<OTC> otc_items, OrderStatus status = OrderStatus.STATUS_UNKNOWN)
         {
+
+
+
+
             Id = id;
             Customer = customer;
             FoodItems = food_items;

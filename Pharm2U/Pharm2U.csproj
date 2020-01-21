@@ -76,6 +76,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -104,6 +106,64 @@
     <Compile Include="Models\Data\OTC.cs" />
     <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\OrderStatus.cs" />
+    <Compile Include="Services\Data\EntityFramework\EntityFrameworkDataService.cs" />
+    <Compile Include="Services\Data\EntityFramework\P2U_CancellationReason.cs">
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\P2U_Customer.cs">
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\P2U_DeliveryArea.cs">
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\P2U_DeliveryCompany.cs">
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\P2U_Food.cs">
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\P2U_Order.cs">
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\P2U_OrderFood.cs">
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\P2U_OrderOTCMeds.cs">
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\P2U_OTCMedication.cs">
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\P2U_Pharmacy.cs">
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\P2U_Provider.cs">
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\P2U_ReturnedReason.cs">
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\P2U_Statuses.cs">
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\P2U_ZipCodes.cs">
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\Pharmacy2U_DBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pharmacy2U_DBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\Pharmacy2U_DBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Services\Data\EntityFramework\Pharmacy2U_DBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pharmacy2U_DBModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Services\Data\IDataService.cs" />
     <Compile Include="Services\Data\MockData\MockOrderDataService.cs" />
     <Compile Include="Services\IDatabaseManager.cs" />
@@ -173,6 +233,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <EntityDeploy Include="Services\Data\EntityFramework\Pharmacy2U_DBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Pharmacy2U_DBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Services\Data\EntityFramework\Pharmacy2U_DBModel.edmx.diagram">
+      <DependentUpon>Pharmacy2U_DBModel.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -186,8 +253,21 @@
   <ItemGroup>
     <Resource Include="Images\Logo\Pharmacy 2U_VERT.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Services\Data\EntityFramework\" />
+    <Content Include="Services\Data\EntityFramework\Pharmacy2U_DBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Pharmacy2U_DBModel.edmx</DependentUpon>
+      <LastGenOutput>Pharmacy2U_DBModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Services\Data\EntityFramework\Pharmacy2U_DBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Pharmacy2U_DBModel.edmx</DependentUpon>
+      <LastGenOutput>Pharmacy2U_DBModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.0.6\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.6\build\Fody.targets')" />

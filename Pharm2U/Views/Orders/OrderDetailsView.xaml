@@ -93,7 +93,7 @@
                         >
                         <StackPanel Orientation="Horizontal" >
                             <Label FontSize="12" Margin="0 0 3 0" Content="Customer ID #:"/>
-                            <Label FontSize="12" Margin="0 0 3 0" Content="{Binding Customer.Id, FallbackValue=Error}"/>
+                            <Label FontSize="12" Margin="0 0 3 0" Content="{Binding CustomerID, FallbackValue=Error}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" >
                             <Label FontSize="12" Margin="0 0 1 0" Content="{Binding Customer.FirstName, FallbackValue=Error}"/>
@@ -107,22 +107,12 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Orientation="Vertical" Grid.Column="0">
                                 <Label FontSize="12" Content="Delivery Address:" FontWeight="Bold"/>
-                                <Label FontSize="12" Content="{Binding Customer.DeliveryAddress, FallbackValue=Error}"/>
-                                <Label FontSize="12" Content="CITY / STATE / ZIP"/>
+                                <Label FontSize="12" Content="{Binding Customer.StreetAddress, FallbackValue=Error}"/>
+                                <Label FontSize="12" Content="{Binding Customer.Zip, FallbackValue=Error}"/>
 
                                 <StackPanel Orientation="Horizontal">
-                                    <Label FontSize="12" Content="Home Phone: " FontWeight="Bold"/>
-                                    <Label FontSize="12" Content="{Binding Customer.HomePhone, FallbackValue=Error}" />
-                                </StackPanel>
-                            </StackPanel>
-
-                            <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Right">
-                                <Label FontSize="12" Content="Billing Address:" FontWeight="Bold"/>
-                                <Label FontSize="12" Content="{Binding Customer.BillingAddress, FallbackValue=Error}"/>
-                                <Label FontSize="12" Content="CITY / STATE / ZIP"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label  FontSize="12" Content="Work Phone: " FontWeight="Bold"/>
-                                    <Label  FontSize="12" Content="{Binding Customer.WorkPhone, FallbackValue=Error}" />
+                                    <Label FontSize="12" Content="Phone: " FontWeight="Bold"/>
+                                    <Label FontSize="12" Content="{Binding Customer.Phone, FallbackValue=Error}" />
                                 </StackPanel>
                             </StackPanel>
                         </Grid>

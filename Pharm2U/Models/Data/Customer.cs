@@ -1,51 +1,79 @@
-﻿namespace Pharm2U.Models.Data
+﻿using Pharm2U.Services.Data.EntityFramework;
+using System;
+
+namespace Pharm2U.Models.Data
 {
     public class Customer
     {
-        public int Id { get; private set; }
-        /// <summary>
-        /// First name
-        /// </summary>
-        public string FirstName { get; private set; }
+        #region Public Properties
 
         /// <summary>
-        /// Last name
+        /// Fields taken from P2U_Customer sincem ultiple inheritance isn't allowed.
         /// </summary>
-        public string LastName { get; private set; }
+        public int ItemID { get; set; }
+        public Nullable<int> ItemCreatedBy { get; set; }
+        public Nullable<System.DateTime> ItemCreatedWhen { get; set; }
+        public Nullable<int> ItemModifiedBy { get; set; }
+        public Nullable<System.DateTime> ItemModifiedWhen { get; set; }
+        public Nullable<int> ItemOrder { get; set; }
+        public System.Guid ItemGUID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string ContactMethod { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string StreetAddress { get; set; }
+        public string Zip { get; set; }
+        public string AddressType { get; set; }
 
-        /// <summary>
-        /// Billing Addresss
-        /// </summary>
-        public string BillingAddress { get; private set; }
+        #endregion
 
+        #region Constructors
         /// <summary>
-        /// Delivery Addresss
+        /// 
         /// </summary>
-        public string DeliveryAddress { get; private set; }
-
-        /// <summary>
-        /// Phone number
-        /// </summary>
-        public string Phone { get; private set; }
-
-        /// <summary>
-        /// Default constructor
-        /// </summary>
-        /// <param name="id">id of record</param>
-        /// <param name="first">first name</param>
-        /// <param name="last">last name</param>
-        /// <param name="billing">billing address</param>
-        /// <param name="delivery">delivery address</param>
-        /// <param name="phone">phone number</param>
-        public Customer(int id, string first, string last, string billing, string delivery, string phone)
+        /// <param name="id">ID number of this record</param>
+        /// <param name="first">First name</param>
+        /// <param name="last"></param>
+        /// <param name="address"></param>
+        /// <param name="phone"></param>
+        /// <param name="email"></param>
+        public Customer(int id, string first, string last, string address, string phone, string email)
         {
-            Id = id;
+            ItemCreatedWhen = DateTime.Now;
+            ItemModifiedWhen = DateTime.Now;
+            ItemID = id;
             FirstName = first;
             LastName = last;
-            BillingAddress = billing;
-            DeliveryAddress = delivery;
+            StreetAddress = address;
+            Email = email;
             Phone = phone;
         }
+
+        /// <summary>
+        /// Constructor that takes an Entitity Framework customer type and creates a Customer model object
+        /// </summary>
+        /// <param name=""></param>
+        public Customer(P2U_Customer customer)
+        {
+            ItemID = customer.ItemID;
+            ItemCreatedBy = customer.ItemCreatedBy;
+            ItemCreatedWhen = customer.ItemCreatedWhen;
+            ItemModifiedBy = customer.ItemModifiedBy;
+            ItemModifiedWhen = customer.ItemModifiedWhen;
+            ItemOrder = customer.ItemOrder;
+            ItemGUID = customer.ItemGUID;
+            FirstName = customer.FirstName;
+            LastName = customer.LastName;
+            ContactMethod = customer.ContactMethod;
+            Phone = customer.Phone;
+            Email = customer.Email;
+            StreetAddress = customer.StreetAddress;
+            Zip = customer.Zip;
+            AddressType = customer.AddressType;
+        }
+
+        #endregion
 
         /// <summary>
         /// Display method for this class
@@ -55,8 +83,8 @@
         {
             string str = string.Empty;
 
-            str += "-- Customer ID: " + Id.ToString() + "   First: " + FirstName + "   Last: " + LastName + 
-                "   Billing: " + BillingAddress + "   Delivery: " + DeliveryAddress + "   Phone: " + Phone;
+            str += "-- Customer ID: " + ItemID.ToString() + "   First: " + FirstName + "   Last: " + LastName + 
+                "   Billing: " + StreetAddress + "   Phone: " + Phone + "   Email: " + Email;
 
             return str;
         }

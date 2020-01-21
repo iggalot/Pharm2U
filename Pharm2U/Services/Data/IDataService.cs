@@ -21,7 +21,7 @@ namespace Pharm2U.Services.Data
         /// Declares how to get the data
         /// </summary>
         /// <returns></returns>
-        public ObservableCollection<T> GetData() { return Data; }
+        public ObservableCollection<T> LoadData() { return Data; }
 
 
         /// <summary>
