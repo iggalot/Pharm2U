@@ -1,9 +1,11 @@
 ﻿using Pharm2U.Models;
 using Pharm2U.Services.Data;
+using Pharm2U.Services.Data.EntityFramework;
 using Pharm2U.Services.Data.MockData;
 using Pharm2U.Utilities;
 using Pharm2U.ViewModels.DataViewModels;
 using System;
+using System.Collections.ObjectModel;
 
 namespace Pharm2U.ViewModels
 {
@@ -43,7 +45,12 @@ namespace Pharm2U.ViewModels
         /// <summary>
         /// Our order model dataservice
         /// </summary>
-        public IDataService<OrderModel> OrderDataService { get; set; }
+        public static IDataService<P2U_Order> OrderDataService { get; set; }
+
+        /// <summary>
+        /// The collection of orders associated with this View Model
+        /// </summary>
+        public ObservableCollection<P2U_Order> CurrentOrderCollection { get; set; }
 
         #endregion
 
@@ -57,11 +64,32 @@ namespace Pharm2U.ViewModels
             // Load our order Data
             OrderDataService = new MockOrderDataService();
 
-            // Create our order list view model for our data set
-            OrderListVM = new OrderListViewModel(OrderDataService);
+            // Create the collection of P2U_Order objects associated with this view model
+            CurrentOrderCollection = new ObservableCollection<P2U_Order>(OrderDataService.Data);
 
-            // Set our current order list
-            CurrentOrderListVM = OrderListVM;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //// Create our order list view model for our data set
+            //OrderListVM = new OrderListViewModel(OrderDataService);
+
+            //// Set our current order list
+            //CurrentOrderListVM = OrderListVM;
 
             Console.WriteLine(OrderDataService.Display());
         }

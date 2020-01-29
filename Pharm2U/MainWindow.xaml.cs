@@ -12,6 +12,8 @@ namespace Pharm2U
         {
             InitializeComponent();
 
+            // Set the data context for the main window
+            DataContext = IoC.IoCContainer.Get<ApplicationViewModel>();
         }
     }
 }

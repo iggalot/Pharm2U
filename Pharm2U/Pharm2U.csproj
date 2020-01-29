@@ -104,8 +104,8 @@
     <Compile Include="Models\Data\Customer.cs" />
     <Compile Include="Models\Data\Food.cs" />
     <Compile Include="Models\Data\OTC.cs" />
-    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\OrderStatus.cs" />
+    <Compile Include="Services\Data\EntityFramework\PartialDBClasses.cs" />
     <Compile Include="Services\Data\EntityFramework\EntityFrameworkDataService.cs" />
     <Compile Include="Services\Data\EntityFramework\P2U_CancellationReason.cs">
       <DependentUpon>Pharmacy2U_DBModel.tt</DependentUpon>
@@ -179,6 +179,7 @@
     <Compile Include="ViewModels\DataViewModels\OrderListViewModel.cs" />
     <Compile Include="ViewModels\DataViewModels\OrdersVM.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\OrderModel.cs" />
     <Compile Include="Views\Orders\OrderListView.xaml.cs">
       <DependentUpon>OrderListView.xaml</DependentUpon>
     </Compile>

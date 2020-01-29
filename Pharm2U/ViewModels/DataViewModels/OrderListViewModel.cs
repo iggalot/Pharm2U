@@ -1,5 +1,6 @@
 ﻿using Pharm2U.Models;
 using Pharm2U.Services.Data;
+using Pharm2U.Services.Data.EntityFramework;
 using Pharm2U.Utilities;
 using System;
 using System.Windows.Input;
@@ -10,7 +11,7 @@ namespace Pharm2U.ViewModels.DataViewModels
     {
         #region Private Members
 
-        private IDataService<OrderModel> _dataService;
+        private IDataService<P2U_Order> _dataService;
 
         /// <summary>
         /// The orders view model
@@ -33,7 +34,7 @@ namespace Pharm2U.ViewModels.DataViewModels
         /// Default constructor
         /// </summary>
         /// <param name="orderdata">IDataService type for this view model</param>
-        public OrderListViewModel(IDataService<OrderModel> orderdataservice)
+        public OrderListViewModel(IDataService<P2U_Order> orderdataservice)
         {
             _dataService = orderdataservice;
 
@@ -75,9 +76,10 @@ namespace Pharm2U.ViewModels.DataViewModels
         {
             string str = String.Empty;
 
-            foreach(OrderModel item in _dataService.LoadData())
+            foreach(P2U_Order item in _dataService.LoadData())
             {
-                str += item.Display() + "\n";
+                str += "Item found....";
+                //str += item.Display() + "\n";
             }
 
             return str;

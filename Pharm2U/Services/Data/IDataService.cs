@@ -4,15 +4,15 @@ using System.Collections.ObjectModel;
 namespace Pharm2U.Services.Data
 {
     /// <summary>
-    /// Abstract class for IDataService class, that generates specific information for a given data object
+    /// Abstract class for IDataService class, that generates the data collection information for a given data object type
     /// </summary>
     /// <typeparam name="T">The object data model to implement the servife for</typeparam>
     public abstract class IDataService<T> where T : class, new()
     {
         #region Public Properties
 
-        // A singleton instance of our parent object
-        public static ObservableCollection<T> Data { get; set; } = new ObservableCollection<T>();
+        // A singleton instance of our data object collection for the specified type
+        public ObservableCollection<T> Data { get; set; } = new ObservableCollection<T>();
 
         #endregion
 

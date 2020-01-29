@@ -1,5 +1,6 @@
 ﻿using Pharm2U.Models;
 using Pharm2U.Services.Data;
+using Pharm2U.Services.Data.EntityFramework;
 using Pharm2U.Utilities;
 using System.Collections.ObjectModel;
 
@@ -13,12 +14,12 @@ namespace Pharm2U.ViewModels.DataViewModels
         /// <summary>
         /// The currently selected order
         /// </summary>
-        private OrderModel _selectedOrder;
+        private P2U_Order _selectedOrder;
 
         /// <summary>
         /// The data service that was used to create this view model
         /// </summary>
-        private IDataService<OrderModel> _dataService;
+        private IDataService<P2U_Order> _dataService;
 
         #endregion
 
@@ -27,7 +28,7 @@ namespace Pharm2U.ViewModels.DataViewModels
         /// <summary>
         /// The currently selected order from the list
         /// </summary>
-        public OrderModel SelectedOrder
+        public P2U_Order SelectedOrder
         {
             get => _selectedOrder;
             set
@@ -39,20 +40,20 @@ namespace Pharm2U.ViewModels.DataViewModels
         /// <summary>
         /// The collection of orders for this list
         /// </summary>
-        public ObservableCollection<OrderModel> Orders { get; set; }
+        public ObservableCollection<P2U_Order> Orders { get; set; }
 
         #endregion
 
         #region Private Methods
-        public void LoadOrders(ObservableCollection<OrderModel> orders)
+        public void LoadOrders(ObservableCollection<P2U_Order> orders)
         {
-            Orders = new ObservableCollection<OrderModel>(orders);
+            Orders = new ObservableCollection<P2U_Order>(orders);
             OnPropertyChanged("Orders");
         }
         #endregion
 
         #region Default Constructor
-        public OrdersVM(IDataService<OrderModel> dataservice)
+        public OrdersVM(IDataService<P2U_Order> dataservice)
         {
             _dataService = dataservice;
         }

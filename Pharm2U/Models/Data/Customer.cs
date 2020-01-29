@@ -8,7 +8,7 @@ namespace Pharm2U.Models.Data
         #region Public Properties
 
         /// <summary>
-        /// Fields taken from P2U_Customer sincem ultiple inheritance isn't allowed.
+        /// Fields taken from P2U_Customer since multiple inheritance isn't allowed.
         /// </summary>
         public int ItemID { get; set; }
         public Nullable<int> ItemCreatedBy { get; set; }

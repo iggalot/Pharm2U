@@ -15,9 +15,10 @@
     <Window.Resources>
         <convert:ApplicationToDataModelConverter x:Key="AppToDCConverter"/>
     </Window.Resources>
-    <Window.DataContext>
+    
+    <!--<Window.DataContext>
         <vm:ApplicationViewModel />
-    </Window.DataContext>
+    </Window.DataContext>-->
 
     <DockPanel>
         <!-- Menu -->
