@@ -15,6 +15,7 @@ namespace Pharm2U.ViewModels
 
         // The OrderListviewModel controlled by this application
         private OrderListViewModel _orderListVM;
+        private CustomerListViewModel _customerListVM;
         private OrderListViewModel _currentOrderListView;
         #endregion
 
@@ -26,6 +27,15 @@ namespace Pharm2U.ViewModels
         {
             get => _orderListVM;
             set { OnPropertyChanged(ref _orderListVM, value); }
+        }
+
+        /// <summary>
+        /// The customer list view model controlled by this application
+        /// </summary>
+        public CustomerListViewModel CustomerListVM
+        {
+            get => _customerListVM;
+            set { OnPropertyChanged(ref _customerListVM, value); }
         }
 
         /// <summary>
@@ -43,15 +53,10 @@ namespace Pharm2U.ViewModels
         public string Name { get; set; } = "Application View Model";
 
         /// <summary>
-        /// Our order model dataservice
+        /// Our data model data service
         /// </summary>
-        public static IDataService<P2U_Order> OrderDataService { get; set; }
-
-        /// <summary>
-        /// The collection of orders associated with this View Model
-        /// </summary>
-        public ObservableCollection<P2U_Order> CurrentOrderCollection { get; set; }
-
+        public IDataTables DataTables { get; set; }
+        
         #endregion
 
         #region Default Constructor
@@ -62,36 +67,19 @@ namespace Pharm2U.ViewModels
         public ApplicationViewModel()
         {
             // Load our order Data
-            OrderDataService = new MockOrderDataService();
+            DataTables = new MockDataService();
 
-            // Create the collection of P2U_Order objects associated with this view model
-            CurrentOrderCollection = new ObservableCollection<P2U_Order>(OrderDataService.Data);
+            //OrderDataService = new MockOrderDataService();
+            //CustomerDataService = new MockCustomerDataService();
 
+            // Create our order list view model for our data set
+            OrderListVM = new OrderListViewModel(DataTables.OrderData);
+            CustomerListVM = new CustomerListViewModel(DataTables.CustomerData);
 
+            // Set our current order list
+            CurrentOrderListVM = OrderListVM;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            //// Create our order list view model for our data set
-            //OrderListVM = new OrderListViewModel(OrderDataService);
-
-            //// Set our current order list
-            //CurrentOrderListVM = OrderListVM;
-
-            Console.WriteLine(OrderDataService.Display());
+            Console.WriteLine(DataTables.Display());
         }
 
         #endregion

@@ -61,6 +61,10 @@
                     <StackPanel Orientation="Vertical"
                         Grid.Row="2"
                         Grid.Column="0" >
+                        <StackPanel Orientation="Horizontal">
+                            <Label FontSize="12" Content="Pharmacy ID: "/>
+                            <Label FontSize="12" Content="{Binding PharmacyID, FallbackValue=Error}"/>
+                        </StackPanel>
                         <Label FontSize="12" Content="Pharmacy Name"/>
                         <Label FontSize="12" Content="Street"/>
                         <Label FontSize="12" Content="City/State"/>
@@ -75,11 +79,11 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Orientation="Horizontal" Grid.Column="0">
                             <Label FontSize="12" FontWeight="Bold" Content="Order Date:"/>
-                            <Label FontSize="12" Content="ORDER DATE"/>
+                            <Label FontSize="12" Content="{Binding NewOrderCreatedWhen, FallbackValue=Error}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Grid.Column="2">
                             <Label FontSize="12" FontWeight="Bold" Content="Order Number:"/>
-                            <Label FontSize="12" Content="{Binding Id, FallbackValue=Error}"/>
+                            <Label FontSize="12" Content="{Binding ItemID, FallbackValue=Error}"/>
                         </StackPanel>
                     </Grid>
 
@@ -96,8 +100,8 @@
                             <Label FontSize="12" Margin="0 0 3 0" Content="{Binding CustomerID, FallbackValue=Error}"/>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" >
-                            <Label FontSize="12" Margin="0 0 1 0" Content="{Binding Customer.FirstName, FallbackValue=Error}"/>
-                            <Label FontSize="12" Margin="0 0 1 0" Content="{Binding Customer.LastName, FallbackValue=Error}"/>
+                            <Label FontSize="12" Margin="0 0 1 0" Content="CUST FIRST NAME"/>
+                            <Label FontSize="12" Margin="0 0 1 0" Content="CUST LAST NAME"/>
                         </StackPanel>
 
                         <Grid>
@@ -107,12 +111,12 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Orientation="Vertical" Grid.Column="0">
                                 <Label FontSize="12" Content="Delivery Address:" FontWeight="Bold"/>
-                                <Label FontSize="12" Content="{Binding Customer.StreetAddress, FallbackValue=Error}"/>
-                                <Label FontSize="12" Content="{Binding Customer.Zip, FallbackValue=Error}"/>
+                                <Label FontSize="12" Content="CUST ADDRESS"/>
+                                <Label FontSize="12" Content="CUST ZIP"/>
 
                                 <StackPanel Orientation="Horizontal">
                                     <Label FontSize="12" Content="Phone: " FontWeight="Bold"/>
-                                    <Label FontSize="12" Content="{Binding Customer.Phone, FallbackValue=Error}" />
+                                    <Label FontSize="12" Content="CUST PHONE" />
                                 </StackPanel>
                             </StackPanel>
                         </Grid>

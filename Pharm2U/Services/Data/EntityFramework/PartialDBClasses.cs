@@ -11,6 +11,8 @@ namespace Pharm2U.Services.Data.EntityFramework
     /// Partial class definitions for the EntityFramework class objects.  Needed to create a non DB constructor,
     /// and to provide additional methodology
     /// </summary>
+
+    #region Order Wrapper
     public partial class P2U_Order
     {
         /// <summary>
@@ -69,8 +71,12 @@ namespace Pharm2U.Services.Data.EntityFramework
         {
             string str = String.Empty;
 
-            str += "OrderID: " + this.ItemID.ToString() + "\n";
-            str +=  "-- " + CustomerID.ToString() + "\n";
+            str += "-----------------------------------------------------\n";
+            str += "OrderID: " + this.ItemID.ToString() + "   Status: " + Status + "\n";
+            str += "-- Cust. #" + CustomerID.ToString() + "    ";
+            str += "-- Pharm. ID #" + PharmacyID.ToString() + "    ";
+            str += "-- Deliv Co. #" + DeliveryCompanyID.ToString() + "    ";
+            str += "\n";
 
             //str += $"-- Food Items ({FoodItems.Count}): \n";
             //foreach (Food item in FoodItems)
@@ -87,6 +93,69 @@ namespace Pharm2U.Services.Data.EntityFramework
         {
             return this.Display();
         }
+    };
+    #endregion
 
-    }
+    #region Customer Wrappers
+    public partial class P2U_Customer
+    {
+        /// <summary>
+        /// An empty constructor for templating
+        /// </summary>
+        public P2U_Customer()
+        {
+
+        }
+
+        /// <summary>
+        /// Constructor for mock data
+        /// </summary>
+        /// <param name="id">Id number</param>
+        /// <param name="first">First name</param>
+        /// <param name="last">Last name</param>
+        /// <param name="address">Street address</param>
+        /// <param name="city">City</param>
+        /// <param name="state">State</param>
+        /// <param name="zip">Zip code</param>
+        /// <param name="phone">Phone number</param>
+        /// <param name="email">Email address</param>
+        public P2U_Customer(int id, string first, string last, string address, string city, string state, string zip, string phone, string email)
+        {
+            ItemID = id;
+            ItemCreatedBy = null;
+            ItemCreatedWhen = DateTime.Now;
+            ItemModifiedBy = null;
+            ItemModifiedWhen = DateTime.Now;
+            ItemOrder = null;
+            ItemGUID = Guid.NewGuid();
+            FirstName = first;
+            LastName = last;
+            ContactMethod = "By Phone";
+            Phone = phone;
+            Email = email;
+            StreetAddress = address + ", " + city + ", " + state;
+            Zip = zip;
+            AddressType = address;
+        }
+
+        /// <summary>
+        /// Override of ToString for displaying purposes
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return this.Display();
+        }
+
+        private string Display()
+        {
+            string str = String.Empty;
+            str += "--------";
+            str += "CustID " + this.ItemID + ": " + "\n";
+            str += this.LastName + ", " + this.FirstName + "\n" + this.StreetAddress + ", " + this.Zip + "\n";
+            str += this.Phone + "   " + this.Email + "\n";
+            return str;
+        }
+    };
+    #endregion
 }

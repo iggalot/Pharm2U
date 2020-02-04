@@ -165,6 +165,9 @@
       <DependentUpon>Pharmacy2U_DBModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Services\Data\IDataService.cs" />
+    <Compile Include="Services\Data\IDataTables.cs" />
+    <Compile Include="Services\Data\MockDataService.cs" />
+    <Compile Include="Services\Data\MockData\MockCustomerDataService.cs" />
     <Compile Include="Services\Data\MockData\MockOrderDataService.cs" />
     <Compile Include="Services\IDatabaseManager.cs" />
     <Compile Include="Services\IDialogService.cs" />
@@ -176,6 +179,8 @@
     <Compile Include="Utilities\VisualTreeHelperExtensions.cs" />
     <Compile Include="ValueConverters\ApplicationToDataModelConverter.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
+    <Compile Include="ViewModels\DataViewModels\CustomerListViewModel.cs" />
+    <Compile Include="ViewModels\DataViewModels\CustomersVM.cs" />
     <Compile Include="ViewModels\DataViewModels\OrderListViewModel.cs" />
     <Compile Include="ViewModels\DataViewModels\OrdersVM.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />

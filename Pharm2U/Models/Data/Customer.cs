@@ -83,7 +83,7 @@ namespace Pharm2U.Models.Data
         {
             string str = string.Empty;
 
-            str += "-- Customer ID: " + ItemID.ToString() + "   First: " + FirstName + "   Last: " + LastName + 
+            str += "-- CustID: " + ItemID.ToString() + "   First: " + FirstName + "   Last: " + LastName + 
                 "   Billing: " + StreetAddress + "   Phone: " + Phone + "   Email: " + Email;
 
             return str;
