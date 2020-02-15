@@ -8,6 +8,9 @@ namespace Pharm2U
     /// </summary>
     public partial class App : Application
     {
+        // The main application window
+        public MainWindow MainAppWindow;
+
         /// <summary>
         /// Override the OnStartup functionality so that we can setup Ninject for dependency inject
         /// </summary>
@@ -20,8 +23,9 @@ namespace Pharm2U
             // Setup our dependency injection for Inversion of Control (IoC)
             IoCContainer.Setup();
 
-            // Now creat our main application window
-            Current.MainWindow = new MainWindow();
+            // Now create our main application window
+            MainAppWindow = new MainWindow();
+            Current.MainWindow = MainAppWindow;
             Current.MainWindow.Show();
         }
     }

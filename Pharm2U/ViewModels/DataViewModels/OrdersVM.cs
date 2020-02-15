@@ -1,8 +1,10 @@
 ﻿using Pharm2U.Models;
 using Pharm2U.Services.Data;
 using Pharm2U.Services.Data.EntityFramework;
+using Pharm2U.Services.Printing;
 using Pharm2U.Utilities;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace Pharm2U.ViewModels.DataViewModels
 {
@@ -56,8 +58,17 @@ namespace Pharm2U.ViewModels.DataViewModels
         public OrdersVM(IDataService<P2U_Order> dataservice)
         {
             _dataService = dataservice;
+
+            //// Set up our commands
+            //PrintCommand printcommand = new PrintCommand();
+            //DoPrintCommand = printcommand;
         }
 
         #endregion
+
+        //#region Commands
+        //public ICommand DoPrintCommand { get; set; }
+        //#endregion
+
     }
 }

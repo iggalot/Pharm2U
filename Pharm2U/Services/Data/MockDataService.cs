@@ -18,8 +18,14 @@ namespace Pharm2U.Services.Data
             // Create the order data
             OrderData = new MockOrderDataService();
 
-            // Create the customner data
+            // Create the customer data
             CustomerData = new MockCustomerDataService();
+
+            // Create the food data
+            FoodData = new MockFoodDataService();
+
+            // Create the food data for orders
+            OrderFoodData = new MockOrderFoodDataService();
         }
     }
 }

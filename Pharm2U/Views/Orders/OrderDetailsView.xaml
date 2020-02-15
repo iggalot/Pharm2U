@@ -12,120 +12,221 @@
     </UserControl.Resources>
     
     <Grid Visibility="{Binding Converter={StaticResource NullToVisConverter}}">
-        <StackPanel Background="White" Orientation="Vertical" VerticalAlignment="Center">
-            <Border Padding="20" Background="White">
-                <Grid x:Name="MainGrid" Margin="40 0 40 0"  Background="White">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="125"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="0.75*"/>
-                        <RowDefinition Height="0.5*"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="0.5*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.5*"/>
+        </Grid.ColumnDefinitions>
+        <Button Grid.Row="1" Grid.ColumnSpan="3" Content="Preview" Click="PrintPreview_Click" />
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1.5*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                    </Grid.ColumnDefinitions>
+        <Border Grid.Row="2" Grid.ColumnSpan="3" Padding="20" Background="White">
+            <Grid Margin="40 0 40 0"  Background="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="125"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="0.75*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                    <!-- Icon/Logo-->
-                    <Border Padding="20" Margin="5"  
-                        Grid.ColumnSpan="3"
-                        Grid.Row="0"
-                        Grid.Column="0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
-                        <Image Source="/Pharm2U;component/Images/Logo/Pharmacy 2U_HORZ.png"/>
-                    </Border>
+                <FlowDocumentReader Margin="20" Grid.Row="1" Grid.RowSpan="13" Grid.ColumnSpan="3">
+                    <FlowDocument x:Name="fixeddoc" PageWidth="Auto" PageHeight="Auto">
 
-                    <!-- Title -->
-                    <Label Grid.Row="1" 
-                       Grid.Column="0" 
-                       Grid.ColumnSpan="3" 
-                       FontWeight="Bold"  
-                       FontSize="20" 
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Content="Pharmacy 2U Delivery Manifest"/>
+                            <BlockUIContainer>
+                                <!-- Icon/Logo-->
+                                <Border Padding="20" Margin="5"  
+                                Grid.ColumnSpan="3"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                                    <Image 
+                                    Source="/Pharm2U;component/Images/Logo/Pharmacy 2U_HORZ.png"
+                                    />
+                                </Border>
+                            </BlockUIContainer>
 
-                    <!-- Pharmacy Address -->
-                    <StackPanel Orientation="Vertical"
-                        Grid.Row="2"
-                        Grid.Column="0" >
-                        <StackPanel Orientation="Horizontal">
-                            <Label FontSize="12" Content="Pharmacy ID: "/>
-                            <Label FontSize="12" Content="{Binding PharmacyID, FallbackValue=Error}"/>
-                        </StackPanel>
-                        <Label FontSize="12" Content="Pharmacy Name"/>
-                        <Label FontSize="12" Content="Street"/>
-                        <Label FontSize="12" Content="City/State"/>
-                        <Label FontSize="12" Content="Phone # - Option Info" />
-                    </StackPanel>
+                            <BlockUIContainer>
+                                <!-- Title -->
+                                <Label Grid.Row="1" 
+                               Grid.Column="0" 
+                               Grid.ColumnSpan="3" 
+                               FontWeight="Bold"  
+                               FontSize="20" 
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Content="Pharmacy 2U Delivery Manifest"/>
+                            </BlockUIContainer>
 
-                    <!-- Order Date / Order # -->
-                    <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Orientation="Horizontal" Grid.Column="0">
-                            <Label FontSize="12" FontWeight="Bold" Content="Order Date:"/>
-                            <Label FontSize="12" Content="{Binding NewOrderCreatedWhen, FallbackValue=Error}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="2">
-                            <Label FontSize="12" FontWeight="Bold" Content="Order Number:"/>
-                            <Label FontSize="12" Content="{Binding ItemID, FallbackValue=Error}"/>
-                        </StackPanel>
-                    </Grid>
-
-                    <!-- Customer Info -->
-                    <StackPanel 
-                        Orientation="Vertical"
-                        Margin="0 0 0 15"
-                        Grid.Row="4"
-                        Grid.Column="0" 
-                        Grid.ColumnSpan="3"
-                        >
-                        <StackPanel Orientation="Horizontal" >
-                            <Label FontSize="12" Margin="0 0 3 0" Content="Customer ID #:"/>
-                            <Label FontSize="12" Margin="0 0 3 0" Content="{Binding CustomerID, FallbackValue=Error}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" >
-                            <Label FontSize="12" Margin="0 0 1 0" Content="CUST FIRST NAME"/>
-                            <Label FontSize="12" Margin="0 0 1 0" Content="CUST LAST NAME"/>
-                        </StackPanel>
-
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Orientation="Vertical" Grid.Column="0">
-                                <Label FontSize="12" Content="Delivery Address:" FontWeight="Bold"/>
-                                <Label FontSize="12" Content="CUST ADDRESS"/>
-                                <Label FontSize="12" Content="CUST ZIP"/>
-
-                                <StackPanel Orientation="Horizontal">
-                                    <Label FontSize="12" Content="Phone: " FontWeight="Bold"/>
-                                    <Label FontSize="12" Content="CUST PHONE" />
+                            <!-- Pharmacy Address -->
+                            <BlockUIContainer>
+                                <StackPanel Orientation="Vertical"
+                                Grid.Row="2"
+                                Grid.Column="0" >
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label FontSize="12" Content="Pharmacy ID: "/>
+                                        <Label FontSize="12" Content="{Binding PharmacyID, FallbackValue=Error}"/>
+                                    </StackPanel>
+                                    <Label FontSize="12" Content="Pharmacy Name"/>
+                                    <Label FontSize="12" Content="Street"/>
+                                    <Label FontSize="12" Content="City/State"/>
+                                    <Label FontSize="12" Content="Phone # - Option Info" />
                                 </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </StackPanel>
-                </Grid>
-            </Border>
-        </StackPanel>
-        
+                            </BlockUIContainer>
+                            <BlockUIContainer>
+                                <!-- Order Date / Order # -->
+                                <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                        <Label FontSize="12" FontWeight="Bold" Content="Order Date:"/>
+                                        <Label FontSize="12" Content="{Binding NewOrderCreatedWhen, FallbackValue=Error}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="2">
+                                        <Label FontSize="12" FontWeight="Bold" Content="Order Number:"/>
+                                        <Label FontSize="12" Content="{Binding ItemID, FallbackValue=Error}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </BlockUIContainer>
+                            <BlockUIContainer>
+                                <!-- Customer Info -->
+                                <StackPanel 
+                                    Orientation="Vertical"
+                                    Margin="0 0 0 15"
+                                    Grid.Row="4"
+                                    Grid.Column="0" 
+                                    Grid.ColumnSpan="3"
+                                    >
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Label FontSize="12" Margin="0 0 3 0" Content="Customer ID #:"/>
+                                        <Label FontSize="12" Margin="0 0 3 0" Content="{Binding CustomerID, FallbackValue=Error}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Label FontSize="12" Margin="0 0 1 0" Content="CUST FIRST NAME"/>
+                                        <Label FontSize="12" Margin="0 0 1 0" Content="CUST LAST NAME"/>
+                                    </StackPanel>
 
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Orientation="Vertical" Grid.Column="0">
+                                            <Label FontSize="12" Content="Delivery Address:" FontWeight="Bold"/>
+                                            <Label FontSize="12" Content="CUST ADDRESS"/>
+                                            <Label FontSize="12" Content="CUST ZIP"/>
+
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label FontSize="12" Content="Phone: " FontWeight="Bold"/>
+                                                <Label FontSize="12" Content="CUST PHONE" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </BlockUIContainer>
+
+
+
+                        <BlockUIContainer>
+                            <!-- Title -->
+                            <Label Grid.Row="1" 
+                               Grid.Column="0" 
+                               Grid.ColumnSpan="3" 
+                               FontWeight="Bold"  
+                               FontSize="20" 
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Content="Pharmacy 2U Delivery Manifest"/>
+                        </BlockUIContainer>
+
+                        <!-- Pharmacy Address -->
+                        <BlockUIContainer>
+                            <StackPanel Orientation="Vertical"
+                                Grid.Row="2"
+                                Grid.Column="0" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Label FontSize="12" Content="Pharmacy ID: "/>
+                                    <Label FontSize="12" Content="{Binding PharmacyID, FallbackValue=Error}"/>
+                                </StackPanel>
+                                <Label FontSize="12" Content="Pharmacy Name"/>
+                                <Label FontSize="12" Content="Street"/>
+                                <Label FontSize="12" Content="City/State"/>
+                                <Label FontSize="12" Content="Phone # - Option Info" />
+                            </StackPanel>
+                        </BlockUIContainer>
+                        <BlockUIContainer>
+                            <!-- Order Date / Order # -->
+                            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                    <Label FontSize="12" FontWeight="Bold" Content="Order Date:"/>
+                                    <Label FontSize="12" Content="{Binding NewOrderCreatedWhen, FallbackValue=Error}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Column="2">
+                                    <Label FontSize="12" FontWeight="Bold" Content="Order Number:"/>
+                                    <Label FontSize="12" Content="{Binding ItemID, FallbackValue=Error}"/>
+                                </StackPanel>
+                            </Grid>
+                        </BlockUIContainer>
+                        <BlockUIContainer>
+                            <!-- Customer Info -->
+                            <StackPanel 
+                                    Orientation="Vertical"
+                                    Margin="0 0 0 15"
+                                    Grid.Row="4"
+                                    Grid.Column="0" 
+                                    Grid.ColumnSpan="3"
+                                    >
+                                <StackPanel Orientation="Horizontal" >
+                                    <Label FontSize="12" Margin="0 0 3 0" Content="Customer ID #:"/>
+                                    <Label FontSize="12" Margin="0 0 3 0" Content="{Binding CustomerID, FallbackValue=Error}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" >
+                                    <Label FontSize="12" Margin="0 0 1 0" Content="CUST FIRST NAME"/>
+                                    <Label FontSize="12" Margin="0 0 1 0" Content="CUST LAST NAME"/>
+                                </StackPanel>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                                        <Label FontSize="12" Content="Delivery Address:" FontWeight="Bold"/>
+                                        <Label FontSize="12" Content="CUST ADDRESS"/>
+                                        <Label FontSize="12" Content="CUST ZIP"/>
+
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label FontSize="12" Content="Phone: " FontWeight="Bold"/>
+                                            <Label FontSize="12" Content="CUST PHONE" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </BlockUIContainer>
+
+                    </FlowDocument>
+                </FlowDocumentReader>
+            </Grid>
+        </Border>
 
     </Grid>
 </UserControl>

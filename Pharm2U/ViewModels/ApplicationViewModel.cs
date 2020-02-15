@@ -16,7 +16,8 @@ namespace Pharm2U.ViewModels
         // The OrderListviewModel controlled by this application
         private OrderListViewModel _orderListVM;
         private CustomerListViewModel _customerListVM;
-        private OrderListViewModel _currentOrderListView;
+ //       private OrderFoodListViewModel _orderFoodListVM;
+        private OrderListViewModel _currentOrderListVM;
         #endregion
 
         #region Public Properties
@@ -43,8 +44,8 @@ namespace Pharm2U.ViewModels
         /// </summary>
         public OrderListViewModel CurrentOrderListVM
         {
-            get => _currentOrderListView;
-            set { OnPropertyChanged(ref _currentOrderListView, value); }
+            get => _currentOrderListVM;
+            set { OnPropertyChanged(ref _currentOrderListVM, value); }
         }
 
         /// <summary>
@@ -66,6 +67,7 @@ namespace Pharm2U.ViewModels
         /// </summary>
         public ApplicationViewModel()
         {
+
             // Load our order Data
             DataTables = new MockDataService();
 
@@ -75,6 +77,8 @@ namespace Pharm2U.ViewModels
             // Create our order list view model for our data set
             OrderListVM = new OrderListViewModel(DataTables.OrderData);
             CustomerListVM = new CustomerListViewModel(DataTables.CustomerData);
+            
+            //OrderFoodListVM = new OrderFoodListViewModel(DataTables.OrderFoodData);
 
             // Set our current order list
             CurrentOrderListVM = OrderListVM;

@@ -64,7 +64,7 @@ namespace Pharm2U.Services.Data.EntityFramework
         }
 
         /// <summary>
-        /// Display the information
+        /// Display the order information information
         /// </summary>
         /// <returns></returns>
         public string Display()
@@ -73,9 +73,9 @@ namespace Pharm2U.Services.Data.EntityFramework
 
             str += "-----------------------------------------------------\n";
             str += "OrderID: " + this.ItemID.ToString() + "   Status: " + Status + "\n";
-            str += "-- Cust. #" + CustomerID.ToString() + "    ";
-            str += "-- Pharm. ID #" + PharmacyID.ToString() + "    ";
-            str += "-- Deliv Co. #" + DeliveryCompanyID.ToString() + "    ";
+            str += "-- Cust. #: " + CustomerID.ToString() + "    ";
+            str += "-- Pharm. ID #: " + PharmacyID.ToString() + "    ";
+            str += "-- Deliv Co. #: " + DeliveryCompanyID.ToString() + "    ";
             str += "\n";
 
             //str += $"-- Food Items ({FoodItems.Count}): \n";
@@ -147,14 +147,128 @@ namespace Pharm2U.Services.Data.EntityFramework
             return this.Display();
         }
 
+        /// <summary>
+        /// Function to display a Customer record.
+        /// </summary>
+        /// <returns></returns>
         private string Display()
         {
             string str = String.Empty;
-            str += "--------";
-            str += "CustID " + this.ItemID + ": " + "\n";
+            str += "--------\n";
+            str += "CustID: " + this.ItemID + ": " + "\n";
             str += this.LastName + ", " + this.FirstName + "\n" + this.StreetAddress + ", " + this.Zip + "\n";
             str += this.Phone + "   " + this.Email + "\n";
             return str;
+        }
+    };
+    #endregion
+
+    #region OrderFood Wrapper
+    public partial class P2U_OrderFood
+    {
+        /// <summary>
+        /// Empty constructor used for generic contructions in template functions
+        /// </summary>
+        public P2U_OrderFood()
+        {
+
+        }
+        /// <summary>
+        /// Constructor accepting parameters
+        /// </summary>
+        public P2U_OrderFood(int id, int food_id, int order_id, decimal price, int qty)
+        {
+            this.ItemID = id;
+            this.ItemCreatedBy = 100;
+            this.ItemCreatedWhen = DateTime.Now;
+            this.ItemModifiedBy = 100;
+            this.ItemModifiedWhen = DateTime.Now;
+            this.ItemOrder = 1;
+            this.ItemGUID = Guid.NewGuid();
+            this.FoodID = food_id;
+            this.OrderID = order_id;
+            this.Price = price;
+            this.Qty = qty;
+            this.Taxable = false;
+        }
+
+        /// <summary>
+        /// Display the order's food information
+        /// </summary>
+        /// <returns></returns>
+        public string Display()
+        {
+            string str = String.Empty;
+
+            str += "-----------------------------------------------------\n";
+            str += "OrderFoodID: " + this.ItemID.ToString() + "\n";
+            str += "-- Order. #: " + this.OrderID.ToString() + "    ";
+            str += "Qty: " + this.Qty + "   ";
+            str += "Food. ID #: " + this.FoodID.ToString() + "    ";
+            str += "Price: " + String.Format("{0:0.00}", this.Price) + "    ";
+            str += "Taxable: " + (this.Taxable == true ? "true" : "false") + "    ";
+            str += "\n";
+
+            return str;
+        }
+
+        public override string ToString()
+        {
+            return this.Display();
+        }
+    };
+    #endregion
+
+    #region Food Wrapper
+    public partial class P2U_Food
+    {
+        /// <summary>
+        /// Empty constructor used for generic contructions in template functions
+        /// </summary>
+        public P2U_Food()
+        {
+
+        }
+        /// <summary>
+        /// Constructor accepting parameters
+        /// </summary>
+        public P2U_Food(int id, string name, string description, decimal price, bool taxable, string type)
+        {
+            this.ItemID = id;
+            this.ItemCreatedBy = 100;
+            this.ItemCreatedWhen = DateTime.Now;
+            this.ItemModifiedBy = 100;
+            this.ItemModifiedWhen = DateTime.Now;
+            this.ItemOrder = 1;
+            this.ItemGUID = Guid.NewGuid();
+            this.Name = name;
+            this.Description = description;
+            this.Price = price;
+            this.Taxable = taxable;
+            this.Type = type;
+        }
+
+        /// <summary>
+        /// Display the food information information
+        /// </summary>
+        /// <returns></returns>
+        public string Display()
+        {
+            string str = String.Empty;
+
+            str += "-----------------------------------------------------\n";
+            str += "FoodID: " + this.ItemID.ToString() + "   " + this.Name + " : " + this.Description + "\n";
+            str += "Price: " + String.Format("{0:0.00}", this.Price) + "    ";
+            str += "Taxable: " + (this.Taxable == true ? "true" : "false") + "    ";
+            str += "Type: " + this.Type + "\n";
+            str += "\n";
+
+            return str;
+        }
+
+        public override string ToString()
+        {
+            return this.Display();
         }
     };
     #endregion

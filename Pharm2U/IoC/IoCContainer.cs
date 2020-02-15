@@ -5,6 +5,7 @@ namespace Pharm2U.IoC
 {
     public static class IoCContainer
     {
+
         #region Public Properties
 
         /// <summary>

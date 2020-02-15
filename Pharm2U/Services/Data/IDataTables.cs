@@ -14,6 +14,13 @@ namespace Pharm2U.Services.Data
         // The customer data
         public IDataService<P2U_Customer> CustomerData { get; set; }
 
+        // The food data for each order
+        public IDataService<P2U_OrderFood> OrderFoodData { get; set; }
+
+        // The food data for each order
+        public IDataService<P2U_Food> FoodData { get; set; }
+
+
         public override string ToString()
         {
             var str = this.Display();
@@ -21,7 +28,7 @@ namespace Pharm2U.Services.Data
         }
 
         /// <summary>
-        /// Display the contents of our DataTAble object
+        /// Display the contents of our DataTable object
         /// </summary>
         /// <returns></returns>
         public string Display()
@@ -31,8 +38,11 @@ namespace Pharm2U.Services.Data
             str += OrderData.Display();
             str += "---- Customer Data ----\n";
             str += CustomerData.Display();
+            str += "---- Food Data ----\n";
+            str += FoodData.Display();
+            str += "---- OrderFood Data ----\n";
+            str += OrderFoodData.Display();
             return str;
-
         }
     }
 }
