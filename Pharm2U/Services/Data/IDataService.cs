@@ -6,7 +6,7 @@ namespace Pharm2U.Services.Data
     /// <summary>
     /// Abstract class for IDataService class, that generates the data collection information for a given data object type
     /// </summary>
-    /// <typeparam name="T">The object data model to implement the servife for</typeparam>
+    /// <typeparam name="T">The object data model to implement the service for</typeparam>
     public abstract class IDataService<T> where T : class, new()
     {
         #region Public Properties

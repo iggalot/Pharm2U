@@ -1,10 +1,4 @@
-﻿using Pharm2U.Services.Data.EntityFramework;
-using Pharm2U.Services.Data.MockData;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Pharm2U.Services.Data.MockData;
 
 namespace Pharm2U.Services.Data
 {

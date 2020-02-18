@@ -4,6 +4,7 @@ using Pharm2U.Services.Data.EntityFramework;
 using Pharm2U.Services.Printing;
 using Pharm2U.Utilities;
 using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Pharm2U.ViewModels.DataViewModels
@@ -35,9 +36,27 @@ namespace Pharm2U.ViewModels.DataViewModels
             get => _selectedOrder;
             set
             {
+                MessageBox.Show("Order #" + value.ItemID + " selected");
+                // Signal that we have changed the selected order from the list
                 OnPropertyChanged(ref _selectedOrder, value);
             }
         }
+
+        public class FullOrderObject{
+
+            public P2U_Order FullOrder;
+            public P2U_Order Customer;
+            public P2U_Order Food;
+
+            public FullOrderObject(int num)
+            {
+                //// check if the order is in the database
+                //var P2U_Order = new P2U_Order();
+               
+                //_dataService.Data
+            }
+
+        };
 
         /// <summary>
         /// The collection of orders for this list
@@ -47,6 +66,10 @@ namespace Pharm2U.ViewModels.DataViewModels
         #endregion
 
         #region Private Methods
+        /// <summary>
+        /// Loads the specified orders from the order list view model
+        /// </summary>
+        /// <param name="orders"></param>
         public void LoadOrders(ObservableCollection<P2U_Order> orders)
         {
             Orders = new ObservableCollection<P2U_Order>(orders);
@@ -55,20 +78,14 @@ namespace Pharm2U.ViewModels.DataViewModels
         #endregion
 
         #region Default Constructor
+        /// <summary>
+        /// Our default constructor for the current dataservice
+        /// </summary>
+        /// <param name="dataservice"></param>
         public OrdersVM(IDataService<P2U_Order> dataservice)
         {
             _dataService = dataservice;
-
-            //// Set up our commands
-            //PrintCommand printcommand = new PrintCommand();
-            //DoPrintCommand = printcommand;
         }
-
         #endregion
-
-        //#region Commands
-        //public ICommand DoPrintCommand { get; set; }
-        //#endregion
-
     }
 }

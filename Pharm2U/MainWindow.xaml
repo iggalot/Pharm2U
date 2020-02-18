@@ -41,7 +41,12 @@
                 <!-- List Area -->
                 <StackPanel Orientation="Vertical" Grid.Column="0">
                     <Button Content="Show Orders" Command="{Binding OrderListVM.LoadOrdersCommand}"/>
-                    <ScrollViewer>
+                    <ScrollViewer
+                                 
+                        Height="{Binding RelativeSource={RelativeSource FindAncestor, 
+                        AncestorType={x:Type Border}},Path=ActualHeight}"
+                        >
+                        
                         <v:OrderListView DataContext="{Binding CurrentOrderListVM}" />
                     </ScrollViewer>
                 </StackPanel>
@@ -62,8 +67,6 @@
                 </StackPanel>
             </Border>
         </Grid>
-        
-        
-
+       
     </DockPanel>
 </Window>

@@ -1,10 +1,5 @@
 ﻿using Pharm2U.Services.Data.EntityFramework;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pharm2U.Services.Data.MockData
 {
@@ -13,7 +8,7 @@ namespace Pharm2U.Services.Data.MockData
 
         #region Constructor
         /// <summary>
-        /// Default Constructor for our mock data service
+        /// Default Constructor for our mock customer data service
         /// </summary>
         public MockCustomerDataService()
         {

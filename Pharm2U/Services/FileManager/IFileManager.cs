@@ -1,4 +1,4 @@
-﻿namespace Pharm2U.Services
+﻿namespace Pharm2U.Services.FileManager
 {
     public interface IFileManager
     {

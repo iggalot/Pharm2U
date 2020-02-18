@@ -178,10 +178,10 @@
     <Compile Include="Services\Data\MockData\MockFoodDataService.cs" />
     <Compile Include="Services\Data\MockData\MockOrderDataService.cs" />
     <Compile Include="Services\Data\MockData\MockOrderFoodDataService.cs" />
-    <Compile Include="Services\IDatabaseManager.cs" />
-    <Compile Include="Services\IDialogService.cs" />
-    <Compile Include="Services\IFileManager.cs" />
-    <Compile Include="Services\INetworkManager.cs" />
+    <Compile Include="Services\DatabaseManager\IDatabaseManager.cs" />
+    <Compile Include="Services\DialogManager\IDialogService.cs" />
+    <Compile Include="Services\FileManager\IFileManager.cs" />
+    <Compile Include="Services\NetworkManager\INetworkManager.cs" />
     <Compile Include="Services\Printing\IPrinterManager.cs" />
     <Compile Include="Services\Printing\PrintCommand.cs" />
     <Compile Include="Services\Printing\PrintWindow.xaml.cs">
@@ -197,7 +197,6 @@
     <Compile Include="ViewModels\DataViewModels\OrderListViewModel.cs" />
     <Compile Include="ViewModels\DataViewModels\OrdersVM.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\OrderModel.cs" />
     <Compile Include="Views\Orders\OrderListView.xaml.cs">
       <DependentUpon>OrderListView.xaml</DependentUpon>
     </Compile>

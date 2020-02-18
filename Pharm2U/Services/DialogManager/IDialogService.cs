@@ -1,4 +1,4 @@
-﻿namespace Pharm2U.Services
+﻿namespace Pharm2U.Services.DialogManager
 {
     public interface IDialogService
     {
