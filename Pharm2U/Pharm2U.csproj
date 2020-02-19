@@ -110,6 +110,7 @@
     <Compile Include="IoC\IoCContainer.cs" />
     <Compile Include="Models\Data\Customer.cs" />
     <Compile Include="Models\Data\Food.cs" />
+    <Compile Include="Models\Data\FullOrderObject.cs" />
     <Compile Include="Models\Data\OTC.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Services\Data\EntityFramework\PartialDBClasses.cs" />

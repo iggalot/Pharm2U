@@ -61,8 +61,10 @@
                         AncestorType={x:Type Grid}},Path=ActualHeight}"
                         >
                         <Grid>
-                            <v:OrderDetailsView DataContext="{Binding CurrentOrderListVM.OrdersVM.SelectedOrder}" />
-                        </Grid>
+                            <StackPanel Orientation="Vertical">
+                                <v:OrderDetailsView DataContext="{Binding CurrentOrderListVM.OrdersVM.FullSelectedOrder}" />
+                            </StackPanel>
+                       </Grid>
                     </ScrollViewer>
                 </StackPanel>
             </Border>
