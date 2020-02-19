@@ -1,4 +1,5 @@
 ﻿using Pharm2U.Models;
+using Pharm2U.Models.Data;
 using Pharm2U.Services.Data;
 using Pharm2U.Services.Data.EntityFramework;
 using Pharm2U.Services.Printing;
@@ -18,6 +19,7 @@ namespace Pharm2U.ViewModels.DataViewModels
         /// The currently selected order
         /// </summary>
         private P2U_Order _selectedOrder;
+        private FullOrderObject _selectedFullOrder;
 
         /// <summary>
         /// The data service that was used to create this view model
@@ -31,32 +33,54 @@ namespace Pharm2U.ViewModels.DataViewModels
         /// <summary>
         /// The currently selected order from the list
         /// </summary>
+        public FullOrderObject FullSelectedOrder
+        {
+            get
+            {
+                MessageBox.Show("Retrieving full order..");
+                return _selectedFullOrder;
+            }
+
+            set
+            {
+                // If no order, do nothing
+                if ((value==null)||(SelectedOrder == null))
+                    return;
+
+                MessageBox.Show("Full Order #" + SelectedOrder.ItemID + " selected");
+
+                // Load our full order information from the order ID
+                _selectedFullOrder = new FullOrderObject(SelectedOrder.ItemID);
+
+                // Signal that we have changed the selected order from the list
+                OnPropertyChanged(ref _selectedFullOrder, value);
+            }
+        }
+
+
+        /// <summary>
+        /// The currently selected order from the list
+        /// </summary>
         public P2U_Order SelectedOrder
         {
             get => _selectedOrder;
             set
             {
-                MessageBox.Show("Order #" + value.ItemID + " selected");
+                // If no order, do nothing
+                if (value == null)
+                    return;
+
+                _selectedOrder = value;
+                //MessageBox.Show("Order #" + value.ItemID + " selected");
+
+                // Load our full order information from the order ID
+                _selectedFullOrder = new FullOrderObject(value.ItemID);
+
                 // Signal that we have changed the selected order from the list
                 OnPropertyChanged(ref _selectedOrder, value);
+                OnPropertyChanged("FullSelectedOrder");
             }
         }
-
-        public class FullOrderObject{
-
-            public P2U_Order FullOrder;
-            public P2U_Order Customer;
-            public P2U_Order Food;
-
-            public FullOrderObject(int num)
-            {
-                //// check if the order is in the database
-                //var P2U_Order = new P2U_Order();
-               
-                //_dataService.Data
-            }
-
-        };
 
         /// <summary>
         /// The collection of orders for this list
@@ -85,6 +109,8 @@ namespace Pharm2U.ViewModels.DataViewModels
         public OrdersVM(IDataService<P2U_Order> dataservice)
         {
             _dataService = dataservice;
+            FullSelectedOrder = null;
+            SelectedOrder = null;
         }
         #endregion
     }
