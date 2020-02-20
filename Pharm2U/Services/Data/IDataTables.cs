@@ -18,7 +18,14 @@ namespace Pharm2U.Services.Data
         public IDataService<P2U_OrderFood> OrderFoodData { get; set; }
 
         // The food data for each order
+        public IDataService<P2U_OrderOTCMeds> OrderOTCMedData { get; set; }
+
+
+        // The food data from the database
         public IDataService<P2U_Food> FoodData { get; set; }
+
+        // The food data for each order
+        public IDataService<P2U_OTCMedication> OTCMedData { get; set; }
 
 
         public override string ToString()
@@ -42,6 +49,10 @@ namespace Pharm2U.Services.Data
             str += FoodData.Display();
             str += "---- OrderFood Data ----\n";
             str += OrderFoodData.Display();
+            str += "---- OTCMeds Data ----\n";
+            str += OTCMedData.Display();
+            str += "---- OrderOTCMed Data ----\n";
+            str += OrderOTCMedData.Display();
             return str;
         }
     }

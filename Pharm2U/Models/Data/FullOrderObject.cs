@@ -13,11 +13,41 @@ namespace Pharm2U.Models.Data
     /// </summary>
     public class FullOrderObject
     {
+        /// <summary>
+        /// The order data
+        /// </summary>
         public P2U_Order Order { get; set; }
+        
+       /// <summary>
+       /// The order's customer data
+       /// </summary>
         public P2U_Customer Customer { get; set; }
+
+        /// <summary>
+        /// The order's related food order items
+        /// </summary>
         public ObservableCollection<P2U_OrderFood> OrderFood { get; set; }
 
+        /// <summary>
+        /// The assembled food object that is a merge of the P2U_Order and P2U_Food tables
+        /// </summary>
         public ObservableCollection<Food> FoodList { get; set; }
+
+        /// <summary>
+        /// The OTCMed med items
+        /// </summary>
+        public ObservableCollection<P2U_OrderOTCMeds> OrderOTCMeds { get; set; }
+
+        /// <summary>
+        /// The assembled food object that is a merge of the P2U_Order and P2U_OTCMed tales
+        /// </summary>
+        /// <param name="num"></param>
+
+        /// <summary>
+        /// The assembled food object that is a merge of the P2U_Order and P2U_Food tables
+        /// </summary>
+        public ObservableCollection<OTCMed> OTCMedsList { get; set; }
+
 
         public FullOrderObject(int num)
         {
@@ -54,6 +84,7 @@ namespace Pharm2U.Models.Data
                 }
             }
 
+            #region Food Data
             // Now get the food order data
             OrderFood = new ObservableCollection<P2U_OrderFood>();
             foreach (P2U_OrderFood item in dt.OrderFoodData.Data)
@@ -86,6 +117,41 @@ namespace Pharm2U.Models.Data
                     }
                 }
             }
+            #endregion
+
+            #region OTCMed Data
+            // Now get the food order data
+            OrderOTCMeds = new ObservableCollection<P2U_OrderOTCMeds>();
+            foreach (P2U_OrderOTCMeds item in dt.OrderOTCMedData.Data)
+            {
+                // Does a food order's order ID entry match the the current order ID?
+                if (item.OrderID == Order.ItemID)
+                {
+                    // Add the food items to the list.
+                    OrderOTCMeds.Add(item);
+                }
+            }
+
+            OTCMedsList = new ObservableCollection<OTCMed>();
+            foreach (P2U_OrderOTCMeds item in OrderOTCMeds)
+            {
+                foreach (P2U_OTCMedication otcmed in dt.OTCMedData.Data)
+                {
+                    if (item.OTCMedID == otcmed.ItemID)
+                    {
+                        // Get the name and description of the item
+                        OTCMedsList.Add(
+                            new OTCMed(otcmed.ItemID,
+                                     otcmed.Name,
+                                     otcmed.Description,
+                                     item.Qty,
+                                     item.Price,
+                                     item.Taxable
+                                     ));
+                    }
+                }
+            }
+            #endregion
         }
 
     };

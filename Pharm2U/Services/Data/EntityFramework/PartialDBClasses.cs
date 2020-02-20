@@ -82,8 +82,8 @@ namespace Pharm2U.Services.Data.EntityFramework
             //foreach (Food item in FoodItems)
             //    str += item.ToString() + "\n";
 
-            //str += $"-- OTC Items ({OTCItems.Count}): \n";
-            //foreach (OTC item in OTCItems)
+            //str += $"-- OTCMed Items ({OTCItems.Count}): \n";
+            //foreach (OTCMed item in OTCItems)
             //    str += item.ToString() + "\n";
 
             return str;
@@ -261,6 +261,115 @@ namespace Pharm2U.Services.Data.EntityFramework
             str += "Price: " + String.Format("{0:0.00}", this.Price) + "    ";
             str += "Taxable: " + (this.Taxable == true ? "true" : "false") + "    ";
             str += "Type: " + this.Type + "\n";
+            str += "\n";
+
+            return str;
+        }
+
+        public override string ToString()
+        {
+            return this.Display();
+        }
+    };
+    #endregion
+
+
+    #region OrderOTCMed Wrapper
+    public partial class P2U_OrderOTCMeds
+    {
+        /// <summary>
+        /// Empty constructor used for generic contructions in template functions
+        /// </summary>
+        public P2U_OrderOTCMeds()
+        {
+
+        }
+        /// <summary>
+        /// Constructor accepting parameters
+        /// </summary>
+        public P2U_OrderOTCMeds(int id, int otcmed_id, int order_id, decimal price, int qty)
+        {
+            this.ItemID = id;
+            this.ItemCreatedBy = 100;
+            this.ItemCreatedWhen = DateTime.Now;
+            this.ItemModifiedBy = 100;
+            this.ItemModifiedWhen = DateTime.Now;
+            this.ItemOrder = 1;
+            this.ItemGUID = Guid.NewGuid();
+            this.OTCMedID = otcmed_id;
+            this.OrderID = order_id;
+            this.Price = price;
+            this.Qty = qty;
+            this.Taxable = false;
+        }
+
+        /// <summary>
+        /// Display the order's food information
+        /// </summary>
+        /// <returns></returns>
+        public string Display()
+        {
+            string str = String.Empty;
+
+            str += "-----------------------------------------------------\n";
+            str += "OrderOTCMedID: " + this.ItemID.ToString() + "\n";
+            str += "-- Order. #: " + this.OrderID.ToString() + "    ";
+            str += "Qty: " + this.Qty + "   ";
+            str += "OTCMed ID #: " + this.OTCMedID.ToString() + "    ";
+            str += "Price: " + String.Format("{0:0.00}", this.Price) + "    ";
+            str += "Taxable: " + (this.Taxable == true ? "true" : "false") + "    ";
+            str += "\n";
+
+            return str;
+        }
+
+        public override string ToString()
+        {
+            return this.Display();
+        }
+    };
+    #endregion
+
+    #region Food Wrapper
+    public partial class P2U_OTCMedication
+    {
+        /// <summary>
+        /// Empty constructor used for generic contructions in template functions
+        /// </summary>
+        public P2U_OTCMedication()
+        {
+
+        }
+        /// <summary>
+        /// Constructor accepting parameters
+        /// </summary>
+        public P2U_OTCMedication(int id, string name, string description, decimal price, bool taxable)
+        {
+            this.ItemID = id;
+            this.ItemCreatedBy = 100;
+            this.ItemCreatedWhen = DateTime.Now;
+            this.ItemModifiedBy = 100;
+            this.ItemModifiedWhen = DateTime.Now;
+            this.ItemOrder = 1;
+            this.ItemGUID = Guid.NewGuid();
+            this.Name = name;
+            this.Description = description;
+            this.Price = price;
+            this.Taxable = taxable;
+        }
+
+        /// <summary>
+        /// Display the food information information
+        /// </summary>
+        /// <returns></returns>
+        public string Display()
+        {
+            string str = String.Empty;
+
+            str += "-----------------------------------------------------\n";
+            str += "OTCMedID: " + this.ItemID.ToString() + "   " + this.Name + " : " + this.Description + "\n";
+            str += "Price: " + String.Format("{0:0.00}", this.Price) + "    ";
+            str += "Taxable: " + (this.Taxable == true ? "true" : "false") + "    ";
             str += "\n";
 
             return str;

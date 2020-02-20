@@ -20,6 +20,12 @@ namespace Pharm2U.Services.Data
 
             // Create the food data for orders
             OrderFoodData = new MockOrderFoodDataService();
+
+            // Create the food data
+            OTCMedData = new MockOTCMedDataService();
+
+            // Create the food data for orders
+            OrderOTCMedData = new MockOrderOTCMedsDataService();
         }
     }
 }
