@@ -37,7 +37,6 @@ namespace Pharm2U.ViewModels.DataViewModels
         {
             get
             {
-                MessageBox.Show("Retrieving full order..");
                 return _selectedFullOrder;
             }
 
@@ -46,8 +45,6 @@ namespace Pharm2U.ViewModels.DataViewModels
                 // If no order, do nothing
                 if ((value==null)||(SelectedOrder == null))
                     return;
-
-                MessageBox.Show("Full Order #" + SelectedOrder.ItemID + " selected");
 
                 // Load our full order information from the order ID
                 _selectedFullOrder = new FullOrderObject(SelectedOrder.ItemID);

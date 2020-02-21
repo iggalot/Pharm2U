@@ -1,10 +1,20 @@
-﻿namespace Pharm2U.Models.Data
+﻿using System;
+
+namespace Pharm2U.Models.Data
 {
     /// <summary>
     /// This object is used to compile the food object record after all the tables have been searched and merged.
     /// </summary>
     public class Food
     {
+        public int ItemID { get; set; }
+        public Nullable<int> ItemCreatedBy { get; set; }
+        public Nullable<System.DateTime> ItemCreatedWhen { get; set; }
+        public Nullable<int> ItemModifiedBy { get; set; }
+        public Nullable<System.DateTime> ItemModifiedWhen { get; set; }
+        public Nullable<int> ItemOrder { get; set; }
+        public System.Guid ItemGUID { get; set; }
+
         /// <summary>
         /// Id number
         /// </summary>

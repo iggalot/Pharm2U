@@ -5,11 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Pharm2U.Services.Printing"
         mc:Ignorable="d"
-        Title="PrintWindow" Height="450" Width="800">
-    <Grid>
+        SizeToContent="WidthAndHeight"
+
+        Title="PrintWindow">
+    <Grid x:Name="PreviewGrid" >
         <StackPanel>
-            <DocumentViewer x:Name="PreviewDocument" Height="400">
-        </DocumentViewer>
+            <DocumentViewer x:Name="PreviewDocument" Loaded="fixedPage_Loaded"/>
+
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Paper Size:"/>
+                <Label Content="W"/>
+                <TextBox Text="{Binding PageWidthDim}" Width="50"/>
+                <Label Content=" x "/>
+                <Label Content="H"/>
+                <TextBox Text="{Binding PageHeightDim}" Width="50"/>
+
+                <Label Content="   "/>
+                <Label Content="Grid Size:"/>
+                <Label Content="W"/>
+
+                <TextBox Text="{Binding GridWidthDim}" Width="50"/>
+                <Label Content=" x "/>
+                <Label Content="H"/>
+                <TextBox Text="{Binding GridHeightDim}" Width="50"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Window>

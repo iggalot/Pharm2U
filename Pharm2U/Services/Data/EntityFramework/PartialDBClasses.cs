@@ -114,12 +114,10 @@ namespace Pharm2U.Services.Data.EntityFramework
         /// <param name="first">First name</param>
         /// <param name="last">Last name</param>
         /// <param name="address">Street address</param>
-        /// <param name="city">City</param>
-        /// <param name="state">State</param>
         /// <param name="zip">Zip code</param>
         /// <param name="phone">Phone number</param>
         /// <param name="email">Email address</param>
-        public P2U_Customer(int id, string first, string last, string address, string city, string state, string zip, string phone, string email)
+        public P2U_Customer(int id, string first, string last, string address, string zip, string phone, string email)
         {
             ItemID = id;
             ItemCreatedBy = null;
@@ -133,7 +131,7 @@ namespace Pharm2U.Services.Data.EntityFramework
             ContactMethod = "By Phone";
             Phone = phone;
             Email = email;
-            StreetAddress = address + ", " + city + ", " + state;
+            StreetAddress = address;
             Zip = zip;
             AddressType = address;
         }
@@ -330,7 +328,7 @@ namespace Pharm2U.Services.Data.EntityFramework
     };
     #endregion
 
-    #region Food Wrapper
+    #region OTCMedication Wrapper
     public partial class P2U_OTCMedication
     {
         /// <summary>
@@ -378,6 +376,139 @@ namespace Pharm2U.Services.Data.EntityFramework
         public override string ToString()
         {
             return this.Display();
+        }
+    };
+    #endregion
+
+    #region Pharmacy Wrappers
+    public partial class P2U_Pharmacy
+    {
+        /// <summary>
+        /// An empty constructor for templating
+        /// </summary>
+        public P2U_Pharmacy()
+        {
+
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="id">Id number of the record</param>
+        /// <param name="name">Name of the pharmacy</param>
+        /// <param name="address">Street address</param>
+        /// <param name="phone">Phone</param>
+        /// <param name="zip">Zip code</param>
+        /// <param name="deliv_price">Default delivery price</param>
+        public P2U_Pharmacy(int id, string name, string address, string phone, string zip, decimal deliv_price)
+        {
+            ItemCreatedWhen = DateTime.Now;
+            ItemModifiedWhen = DateTime.Now;
+            ItemID = id;
+            Name = name;
+            Address = address;
+            Phone = phone;
+            Zip = zip;
+
+            GlobalDeliveryPrice = deliv_price;
+            UseMinDeliveryAmt = true;
+            MinDeliveryAmt = deliv_price;
+            OrderTimeout = null;
+            PaymentTimeout = null;
+            GLNumber = "default GLNumer";
+            DefaultDeliveryCompany = 0;
+            TaxRate = 8.00m;
+            OrderEmailAddress = "default order email address";
+            OrderEmailSubject = "default order email subject";
+        }
+
+        /// <summary>
+        /// Override of ToString for displaying purposes
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return this.Display();
+        }
+
+        /// <summary>
+        /// Function to display a Customer record.
+        /// </summary>
+        /// <returns></returns>
+        private string Display()
+        {
+            string str = String.Empty;
+            str += "--------\n";
+            str += "PharmacyID: " + this.ItemID + ": " + "\n";
+            str += this.Name  + "\n" + this.Address + ", " + this.Zip + "\n";
+            str += this.Phone+ "\n";
+            return str;
+        }
+    };
+    #endregion
+
+    #region Zip Code Wrappers
+    public partial class P2U_ZipCodes
+    {
+        /// <summary>
+        /// An empty constructor for templating
+        /// </summary>
+        public P2U_ZipCodes()
+        {
+
+        }
+
+        /// <summary>
+        /// Constructor for mock zip code date
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="zip"></param>
+        /// <param name="city"></param>
+        /// <param name="county"></param>
+        /// <param name="state"></param>
+        /// <param name="country"></param>
+        /// <param name="latitude"></param>
+        /// <param name="longitude"></param>
+        public P2U_ZipCodes(int id, string zip, string city, string county, string state, string country, double latitude, double longitude)
+        {
+            this.ItemID = id;
+            this.ItemCreatedBy = 100;
+            this.ItemCreatedWhen = DateTime.Now;
+            this.ItemModifiedBy = 100;
+            this.ItemModifiedWhen = DateTime.Now;
+            this.ItemOrder = 1;
+            this.ItemGUID = Guid.NewGuid();
+
+            this.Zip = zip;
+            this.City = city;
+            this.County = county;
+            this.State = state;
+            this.Country = country;
+            this.Latitude = latitude;
+            this.Longitude = longitude;
+        }
+
+        /// <summary>
+        /// Override of ToString for displaying purposes
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return this.Display();
+        }
+
+        /// <summary>
+        /// Function to display a ZipCode record.
+        /// </summary>
+        /// <returns></returns>
+        private string Display()
+        {
+            string str = String.Empty;
+            str += "--------\n";
+            str += "ZipID: " + this.ItemID + ": " + "\n";
+            str += this.Zip + ": " + this.City + ", " + this.State + ", " + this.Country + "\n";
+            str += this.Latitude + ", " + this.Longitude + "\n";
+            return str;
         }
     };
     #endregion

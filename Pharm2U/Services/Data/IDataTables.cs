@@ -8,6 +8,7 @@ namespace Pharm2U.Services.Data
     /// </summary>
     public abstract class IDataTables
     {
+        #region Public Properties
         // The order data
         public IDataService<P2U_Order> OrderData { get; set; }
 
@@ -24,14 +25,27 @@ namespace Pharm2U.Services.Data
         // The food data from the database
         public IDataService<P2U_Food> FoodData { get; set; }
 
-        // The food data for each order
+        // The OTC medication data from the database
         public IDataService<P2U_OTCMedication> OTCMedData { get; set; }
 
+        // The pharmacy information from the database
+        public IDataService<P2U_Pharmacy> PharmacyData { get; set; }
 
+        // The delivery company information for each order
+        public IDataService<P2U_DeliveryCompany> DeliveryCompanyData { get; set; }
+
+        // The delivery area information
+        public IDataService<P2U_DeliveryCompany> DeliveryAreaData { get; set; }
+
+        // The zipcode information containing city and state information
+        public IDataService<P2U_ZipCodes> ZipCodeData { get; set; }
+        #endregion
+
+        #region Public Methods
         public override string ToString()
         {
             var str = this.Display();
-            return str ;
+            return str;
         }
 
         /// <summary>
@@ -53,7 +67,12 @@ namespace Pharm2U.Services.Data
             str += OTCMedData.Display();
             str += "---- OrderOTCMed Data ----\n";
             str += OrderOTCMedData.Display();
+            str += "---- Pharmacy Data ----\n";
+            str += PharmacyData.Display();
+            str += "---- Zip code Data ----\n";
+            str += ZipCodeData.Display();
             return str;
-        }
+        } 
+        #endregion
     }
 }

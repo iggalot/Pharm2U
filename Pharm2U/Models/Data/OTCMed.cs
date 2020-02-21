@@ -1,7 +1,12 @@
 ﻿namespace Pharm2U.Models.Data
 {
+    /// <summary>
+    /// A class for containing the OTC med object.
+    /// This is built from a merge of the P2U_OrderOTCMed table and the P2U_Medications
+    /// </summary>
     public class OTCMed
     {
+        #region Public Properties
         /// <summary>
         /// Id number
         /// </summary>
@@ -37,6 +42,18 @@
         /// </summary>
         public decimal Price { get; set; }
 
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name">Name of the item</param>
+        /// <param name="description">Description of the item</param>
+        /// <param name="qty">Qty of the item in the order</param>
+        /// <param name="price">Price of the items in the order</param>
+        /// <param name="taxable">Is the item taxable</param>
         public OTCMed(int id, string name, string description, int qty, decimal price, bool taxable)
         {
             Id = id;
@@ -46,7 +63,9 @@
             Price = price;
             Taxable = taxable;
         }
+        #endregion
 
+        #region Public Methods
         /// <summary>
         /// Display method for this class
         /// </summary>
@@ -67,6 +86,7 @@
         public override string ToString()
         {
             return this.Display();
-        }
+        } 
+        #endregion
     }
 }

@@ -26,6 +26,8 @@ namespace Pharm2U.Models.Data
         public string Zip { get; set; }
         public string AddressType { get; set; }
 
+        // Returns the city, state, info for the given zip
+        public AddressData AddressInfo { get; set; } = null;
         #endregion
 
         #region Constructors
@@ -38,7 +40,7 @@ namespace Pharm2U.Models.Data
         /// <param name="address"></param>
         /// <param name="phone"></param>
         /// <param name="email"></param>
-        public Customer(int id, string first, string last, string address, string phone, string email)
+        public Customer(int id, string first, string last, string address, string phone, string email, string zip)
         {
             ItemCreatedWhen = DateTime.Now;
             ItemModifiedWhen = DateTime.Now;
@@ -48,6 +50,10 @@ namespace Pharm2U.Models.Data
             StreetAddress = address;
             Email = email;
             Phone = phone;
+            Zip = zip;
+
+            // Create the address data object for the customer
+            AddressInfo = new AddressData(address, zip);
         }
 
         /// <summary>
@@ -71,6 +77,9 @@ namespace Pharm2U.Models.Data
             StreetAddress = customer.StreetAddress;
             Zip = customer.Zip;
             AddressType = customer.AddressType;
+
+            // Create the address data object for the customer
+            AddressInfo = new AddressData(StreetAddress, Zip);
         }
 
         #endregion

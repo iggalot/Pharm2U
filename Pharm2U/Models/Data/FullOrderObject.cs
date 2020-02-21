@@ -13,15 +13,17 @@ namespace Pharm2U.Models.Data
     /// </summary>
     public class FullOrderObject
     {
+        #region Public Properties
+
         /// <summary>
         /// The order data
         /// </summary>
         public P2U_Order Order { get; set; }
-        
-       /// <summary>
-       /// The order's customer data
-       /// </summary>
-        public P2U_Customer Customer { get; set; }
+
+        /// <summary>
+        /// The order's customer data
+        /// </summary>
+        public Customer Customer { get; set; }
 
         /// <summary>
         /// The order's related food order items
@@ -29,7 +31,8 @@ namespace Pharm2U.Models.Data
         public ObservableCollection<P2U_OrderFood> OrderFood { get; set; }
 
         /// <summary>
-        /// The assembled food object that is a merge of the P2U_Order and P2U_Food tables
+        /// The assembled food object that is a merge of the P2U_Order and P2U_Food tables.
+        /// This will combine the order number, quantity, and pricing information with the item name and description
         /// </summary>
         public ObservableCollection<Food> FoodList { get; set; }
 
@@ -44,11 +47,15 @@ namespace Pharm2U.Models.Data
         /// <param name="num"></param>
 
         /// <summary>
-        /// The assembled food object that is a merge of the P2U_Order and P2U_Food tables
+        /// The assembled food object that is a merge of the P2U_Order and P2U_OTCMedication tables.
+        /// This will combine the order number, quantity, and pricing information with the item name and description
         /// </summary>
         public ObservableCollection<OTCMed> OTCMedsList { get; set; }
 
+        public Pharmacy Pharmacy { get; set; }
+        #endregion
 
+        #region Constructor
         public FullOrderObject(int num)
         {
             // retrieve the data tables from the application view model
@@ -56,6 +63,9 @@ namespace Pharm2U.Models.Data
 
             // retrieve the specific order infromation for the specified order
             bool recordFound = false;
+
+            #region Order Data
+
             Order = new P2U_Order();
             foreach (P2U_Order item in dt.OrderData.Data)
             {
@@ -63,26 +73,29 @@ namespace Pharm2U.Models.Data
                 {
                     recordFound = true;
                     Order = item;
+                    break;
                 }
             }
+            #endregion
 
-            // If no order was found, there shouldnt be any related date in the daatabase
+            // If no order was found, there shouldnt be any related data in the daatabase
             if (!recordFound)
             {
                 MessageBox.Show("No matching record for Order #" + num + "was found");
                 return;
             }
 
+            #region Customer Data
             // Otherwise, proceed with getting the customer data
-            Customer = new P2U_Customer();
             foreach (P2U_Customer item in dt.CustomerData.Data)
             {
                 if (item.ItemID == Order.CustomerID)
                 {
-                    MessageBox.Show("Customer #" + Order.CustomerID + " match found");
-                    Customer = item;
+                    Customer = new Customer(item);
+                    break;
                 }
             }
+            #endregion
 
             #region Food Data
             // Now get the food order data
@@ -100,7 +113,7 @@ namespace Pharm2U.Models.Data
             FoodList = new ObservableCollection<Food>();
             foreach (P2U_OrderFood item in OrderFood)
             {
-                foreach(P2U_Food food in dt.FoodData.Data)
+                foreach (P2U_Food food in dt.FoodData.Data)
                 {
                     if (item.FoodID == food.ItemID)
                     {
@@ -114,6 +127,7 @@ namespace Pharm2U.Models.Data
                                      item.Price,
                                      item.Taxable,
                                      food.Type));
+                        break;
                     }
                 }
             }
@@ -148,12 +162,26 @@ namespace Pharm2U.Models.Data
                                      item.Price,
                                      item.Taxable
                                      ));
+                        break;
                     }
+                }
+            }
+            #endregion
+
+            #region Pharmacy Data
+            // Otherwise, proceed with getting the customer data
+            foreach (P2U_Pharmacy item in dt.PharmacyData.Data)
+            {
+                if (item.ItemID == Order.PharmacyID)
+                {
+                    Pharmacy = new Pharmacy(item);
+                    break;
                 }
             }
             #endregion
         }
 
+        #endregion
     };
 
 }

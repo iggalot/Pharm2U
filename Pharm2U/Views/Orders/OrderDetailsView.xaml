@@ -26,182 +26,163 @@
         <Button Grid.Row="1" Grid.ColumnSpan="3" Content="Preview" Click="PrintPreview_Click" />
 
         <Border Grid.Row="2" Grid.ColumnSpan="3" Padding="20" Background="White">
-            <Grid Margin="40 0 40 0"  Background="White">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="125"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="0.75*"/>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <FlowDocumentReader Margin="20" Grid.Row="1" Grid.RowSpan="13" Grid.ColumnSpan="3">
+            <Grid Background="White">
+                <FlowDocumentReader Margin="5" Grid.Row="1" Grid.RowSpan="13" Grid.ColumnSpan="3">
                     <FlowDocument x:Name="fixeddoc">
+                        <!-- Icon/Logo-->
                         <BlockUIContainer>
-                            <!-- Icon/Logo-->
-                            <Border Padding="10" Margin="5"  
-                            Grid.ColumnSpan="3"
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
+                            <Border Margin="50 5 50 5"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
                                 <Image 
                                 Source="/Pharm2U;component/Images/Logo/Pharmacy 2U_HORZ.png"
+                                Width="150"
                                 />
                             </Border>
                         </BlockUIContainer>
 
                         <BlockUIContainer>
                             <!-- Title -->
-                            <Label Grid.Row="1" 
-                            Grid.Column="0" 
-                            Grid.ColumnSpan="3" 
-                            FontWeight="Bold"  
-                            FontSize="20" 
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Content="Pharmacy 2U Delivery Manifest"/>
+                            <Border Margin="50 5 50 5">
+                                <Label  
+                                    FontWeight="Bold"  
+                                    FontSize="14" 
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Content="Pharmacy 2U Delivery Manifest"/>
+                            </Border>
                         </BlockUIContainer>
 
                         <!-- Pharmacy Address -->
                         <BlockUIContainer>
-                            <StackPanel Orientation="Vertical"
-                            Grid.Row="2"
-                            Grid.Column="0" >
-                                <StackPanel Orientation="Horizontal">
-                                    <Label FontSize="12" Content="Pharmacy ID: "/>
-                                    <Label FontSize="12" Content="{Binding PharmacyID, FallbackValue=Error}"/>
+                            <Border Margin="50 5 50 5">
+                                <StackPanel Orientation="Vertical"
+                                    Grid.Row="2"
+                                    Grid.Column="0" >
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.Name, FallbackValue=Error}"/>
+                                        <Label FontSize="12" Padding="0" Margin="0" Content="     (ID #: "/>
+                                        <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.ItemID, FallbackValue=Error}"/>
+                                        <Label FontSize="12" Padding="0" Margin="0" Content=")"/>
+                                    </StackPanel>
+
+                                    <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.Address, FallbackValue=Error}"/>
+                                    <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.AddressInfo.City, FallbackValue=Error}"/>
+                                    <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.AddressInfo.State, FallbackValue=Error}"/>
+                                    <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.AddressInfo.Country, FallbackValue=Error}"/>
+                                    <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.Zip, FallbackValue=Error}"/>
+                                    <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.Phone, FallbackValue=Error}" />
                                 </StackPanel>
-                                <Label FontSize="12" Content="Pharmacy Name"/>
-                                <Label FontSize="12" Content="Street"/>
-                                <Label FontSize="12" Content="City/State"/>
-                                <Label FontSize="12" Content="Phone # - Option Info" />
-                            </StackPanel>
+                            </Border>
                         </BlockUIContainer>
 
                         <!-- Order Date / Order # -->
                         <BlockUIContainer>
-                            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <StackPanel Orientation="Horizontal" Grid.Column="0">
-                                    <Label FontSize="12" FontWeight="Bold" Content="Order Date:"/>
-                                    <Label FontSize="12" Content="{Binding Order.NewOrderCreatedWhen, FallbackValue=Error}"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Grid.Column="2">
-                                    <Label FontSize="12" FontWeight="Bold" Content="Order Number:"/>
-                                    <Label FontSize="12" Content="{Binding Order.ItemID, FallbackValue=Error}"/>
-                                </StackPanel>
-                            </Grid>
+                            <Border Margin="50 5 50 5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="0">
+                                        <Label FontSize="12" Padding="0" Margin="0" FontWeight="Bold" Content="Order Date:  "/>
+                                        <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Order.NewOrderCreatedWhen, FallbackValue=Error}"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
+                                        <Label FontSize="12" Padding="0" Margin="0" FontWeight="Bold" Content="Order Number: "/>
+                                        <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Order.ItemID, FallbackValue=Error}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
                         </BlockUIContainer>
 
                         <!-- Customer Info -->
                         <BlockUIContainer>
-                            <StackPanel 
-                                    Orientation="Vertical"
-                                    Margin="0 0 0 15"
-                                    Grid.Row="4"
-                                    Grid.Column="0" 
-                                    Grid.ColumnSpan="3"
-                                    >
-                                <StackPanel Orientation="Horizontal" >
-                                    <Label FontSize="12" Margin="0 0 3 0" Content="Customer ID #:"/>
-                                    <Label FontSize="12" Margin="0 0 3 0" Content="{Binding Customer.ItemID, FallbackValue=Error}"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" >
-                                    <Label FontSize="12" Margin="0 0 1 0" Content="{Binding Customer.FirstName}"/>
-                                    <Label FontSize="12" Margin="0 0 1 0" Content="{Binding Customer.LastName}"/>
-                                </StackPanel>
-
+                            <Border Margin="50 5 50 5">
                                 <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition />
+                                        <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
-                                    <StackPanel Grid.Row="0"  Orientation="Vertical" Grid.Column="0">
-                                        <Label FontSize="12" Content="Delivery Address:" FontWeight="Bold"/>
-                                        <Label FontSize="12" Content="{Binding Customer.StreetAddress}"/>
-                                        <Label FontSize="12" Content="{Binding Customer.Zip}"/>
-                                    </StackPanel>
-                                    <StackPanel Grid.Row="1" Orientation="Horizontal">
-                                        <Label FontSize="12" Content="Phone: " FontWeight="Bold"/>
-                                        <Label FontSize="12" Content="{Binding Customer.Phone}" />
-                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical">
+                                            <StackPanel Orientation="Horizontal" >
+                                                <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Customer.FirstName, FallbackValue=Error}"/>
+                                                <Label FontSize="12" Padding="0" Margin="5 0 0 0" Content="{Binding Customer.LastName, FallbackValue=Error}"/>
+                                                <Label FontSize="12" Padding="0" Margin="0" Content="     (ID #: "/>
+                                                <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Customer.ItemID, FallbackValue=Error}"/>
+                                                <Label FontSize="12" Padding="0" Margin="0" Content=")"/>
+                                            </StackPanel>
+                                            <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Customer.StreetAddress}"/>
+                                            <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Customer.Zip}"/>
+                                        </StackPanel>
+                                    <Label FontSize="12" Grid.Column="1" Padding="0" Margin="0" HorizontalAlignment="Center" Content="{Binding Customer.Phone}" />
+                                    <Label FontSize="12" Grid.Column="2" Padding="0" Margin="0" HorizontalAlignment="Right" Content="{Binding Customer.Phone}" />
                                 </Grid>
-                            </StackPanel>
+                            </Border>
                         </BlockUIContainer>
                         
                         <!-- Food Order Info -->
                         <BlockUIContainer>
-                            <ListBox ItemsSource="{Binding FoodList}" >
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="50"/>
-                                                <ColumnDefinition Width="50"/>
-                                                <ColumnDefinition Width="125"/>
-                                                <ColumnDefinition Width="150"/>
-                                                <ColumnDefinition Width="75"/>
-                                                <ColumnDefinition Width="50"/>
-                                                <ColumnDefinition Width="50"/>
-                                            </Grid.ColumnDefinitions>
-                                            
-                                            <TextBox Margin="2" FontSize="12" Grid.Column="0" Text="{Binding Id}"/>
-                                            <TextBox Margin="2" FontSize="12" Grid.Column="1" Text="{Binding Qty}"/>
-                                            <TextBox Margin="2" FontSize="12" Grid.Column="2" Text="{Binding Name}"/>
-                                            <TextBox Margin="2" FontSize="12" Grid.Column="3" Text="{Binding Description}"/>
-                                            <TextBox Margin="2" FontSize="12" Grid.Column="4" Text="{Binding Type}"/>
-                                            <TextBox Margin="2" FontSize="12" Grid.Column="5" Text="{Binding Price}"/>
-                                            <TextBox Margin="2" FontSize="12" Grid.Column="6" Text="{Binding Taxable}"/>
-                                        </Grid>
+                            <Border Margin="50 5 50 5">
+                                <ListView ItemsSource="{Binding FoodList}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="125"/>
+                                                    <ColumnDefinition Width="125"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="50"/>
+                                                    <ColumnDefinition Width="50"/>
+                                                </Grid.ColumnDefinitions>
 
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
+                                                <Label Padding="2" FontSize="12" Grid.Column="0" Content="{Binding Name}"/>
+                                                <Label Padding="2" FontSize="12" Grid.Column="1" Content="{Binding Description}"/>
+                                                <Label Padding="2" FontSize="12" Grid.Column="2" Content="{Binding Type}"/>
+                                                <Label Padding="20 2 2 2" FontSize="12" Grid.Column="3" Content="{Binding Qty}"/>
+                                                <Label Padding="2" FontSize="12" Grid.Column="4" Content=" @ $"/>
+                                                <Label Padding="2" FontSize="12" Grid.Column="5" Content="{Binding Price}"/>
+                                                <Label Padding="2" FontSize="12" Grid.Column="6" Content="{Binding Taxable}"/>
+                                            </Grid>
+
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </Border>
                         </BlockUIContainer>
 
 
                         <!-- OTCMeds Order Info -->
                         <BlockUIContainer>
-                            <ListBox ItemsSource="{Binding OTCMedsList}" >
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="50"/>
-                                                <ColumnDefinition Width="50"/>
-                                                <ColumnDefinition Width="125"/>
-                                                <ColumnDefinition Width="150"/>
-                                                <ColumnDefinition Width="75"/>
-                                                <ColumnDefinition Width="50"/>
-                                                <ColumnDefinition Width="50"/>
-                                            </Grid.ColumnDefinitions>
+                            <Border Margin="50 5 50 5">
+                                <ListBox ItemsSource="{Binding OTCMedsList}" >
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50"/>
+                                                    <ColumnDefinition Width="50"/>
+                                                    <ColumnDefinition Width="125"/>
+                                                    <ColumnDefinition Width="150"/>
+                                                    <ColumnDefinition Width="75"/>
+                                                    <ColumnDefinition Width="50"/>
+                                                    <ColumnDefinition Width="50"/>
+                                                </Grid.ColumnDefinitions>
 
-                                            <TextBox Margin="2" FontSize="12" Grid.Column="0" Text="{Binding Id}"/>
-                                            <TextBox Margin="2" FontSize="12" Grid.Column="1" Text="{Binding Qty}"/>
-                                            <TextBox Margin="2" FontSize="12" Grid.Column="2" Text="{Binding Name}"/>
-                                            <TextBox Margin="2" FontSize="12" Grid.Column="3" Text="{Binding Description}"/>
-                                            <TextBox Margin="2" FontSize="12" Grid.Column="4" Text="{Binding Price}"/>
-                                            <TextBox Margin="2" FontSize="12" Grid.Column="5" Text="{Binding Taxable}"/>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
+                                                <TextBox Margin="2" FontSize="12" Grid.Column="0" Text="{Binding Id}"/>
+                                                <TextBox Margin="2" FontSize="12" Grid.Column="1" Text="{Binding Qty}"/>
+                                                <TextBox Margin="2" FontSize="12" Grid.Column="2" Text="{Binding Name}"/>
+                                                <TextBox Margin="2" FontSize="12" Grid.Column="3" Text="{Binding Description}"/>
+                                                <TextBox Margin="2" FontSize="12" Grid.Column="4" Text="{Binding Price}"/>
+                                                <TextBox Margin="2" FontSize="12" Grid.Column="5" Text="{Binding Taxable}"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Border>
                         </BlockUIContainer>
                     </FlowDocument>
                 </FlowDocumentReader>
