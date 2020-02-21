@@ -55,10 +55,8 @@
 
                         <!-- Pharmacy Address -->
                         <BlockUIContainer>
-                            <Border Margin="50 5 50 5">
-                                <StackPanel Orientation="Vertical"
-                                    Grid.Row="2"
-                                    Grid.Column="0" >
+                            <Border Margin="20 5 20 5">
+                                <StackPanel Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal">
                                         <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.Name, FallbackValue=Error}"/>
                                         <Label FontSize="12" Padding="0" Margin="0" Content="     (ID #: "/>
@@ -67,10 +65,7 @@
                                     </StackPanel>
 
                                     <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.Address, FallbackValue=Error}"/>
-                                    <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.AddressInfo.City, FallbackValue=Error}"/>
-                                    <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.AddressInfo.State, FallbackValue=Error}"/>
-                                    <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.AddressInfo.Country, FallbackValue=Error}"/>
-                                    <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.Zip, FallbackValue=Error}"/>
+                                    <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.AddressInfo.CityStateString, FallbackValue=Error}"/>
                                     <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.Phone, FallbackValue=Error}" />
                                 </StackPanel>
                             </Border>
@@ -78,7 +73,7 @@
 
                         <!-- Order Date / Order # -->
                         <BlockUIContainer>
-                            <Border Margin="50 5 50 5">
+                            <Border Margin="20 5 20 5">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                             <ColumnDefinition />
@@ -98,33 +93,29 @@
 
                         <!-- Customer Info -->
                         <BlockUIContainer>
-                            <Border Margin="50 5 50 5">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
+                            <Border Margin="20 5 20 5">
+                                <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Vertical">
-                                            <StackPanel Orientation="Horizontal" >
-                                                <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Customer.FirstName, FallbackValue=Error}"/>
-                                                <Label FontSize="12" Padding="0" Margin="5 0 0 0" Content="{Binding Customer.LastName, FallbackValue=Error}"/>
-                                                <Label FontSize="12" Padding="0" Margin="0" Content="     (ID #: "/>
-                                                <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Customer.ItemID, FallbackValue=Error}"/>
-                                                <Label FontSize="12" Padding="0" Margin="0" Content=")"/>
-                                            </StackPanel>
-                                            <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Customer.StreetAddress}"/>
-                                            <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Customer.Zip}"/>
+                                        <StackPanel Orientation="Horizontal" >
+                                            <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Customer.FirstName, FallbackValue=Error}"/>
+                                            <Label FontSize="12" Padding="0" Margin="5 0 0 0" Content="{Binding Customer.LastName, FallbackValue=Error}"/>
+                                            <Label FontSize="12" Padding="0" Margin="0" Content="     (ID #: "/>
+                                            <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Customer.ItemID, FallbackValue=Error}"/>
+                                            <Label FontSize="12" Padding="0" Margin="0" Content=")"/>
                                         </StackPanel>
-                                    <Label FontSize="12" Grid.Column="1" Padding="0" Margin="0" HorizontalAlignment="Center" Content="{Binding Customer.Phone}" />
-                                    <Label FontSize="12" Grid.Column="2" Padding="0" Margin="0" HorizontalAlignment="Right" Content="{Binding Customer.Phone}" />
-                                </Grid>
+                                        <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Customer.StreetAddress}"/>
+                                        <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Customer.AddressInfo.CityStateString, FallbackValue=Error}"/>
+
+                                    </StackPanel>
+                                    <Label FontSize="12" Grid.Column="1" Padding="0" Margin="30 0 0 0" HorizontalAlignment="Center" Content="{Binding Customer.Phone}" />
+                                    <Label FontSize="12" Grid.Column="2" Padding="0" Margin="30 0 0 0" HorizontalAlignment="Right" Content="{Binding Customer.Phone}" />
+                                </StackPanel>
                             </Border>
                         </BlockUIContainer>
                         
                         <!-- Food Order Info -->
                         <BlockUIContainer>
-                            <Border Margin="50 5 50 5">
+                            <Border Margin="20 5 20 5">
                                 <ListView ItemsSource="{Binding FoodList}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
@@ -157,7 +148,7 @@
 
                         <!-- OTCMeds Order Info -->
                         <BlockUIContainer>
-                            <Border Margin="50 5 50 5">
+                            <Border Margin="20 5 20 5">
                                 <ListBox ItemsSource="{Binding OTCMedsList}" >
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>

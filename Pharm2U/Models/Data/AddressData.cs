@@ -1,9 +1,15 @@
 ﻿using Pharm2U.Services.Data;
 using Pharm2U.Services.Data.EntityFramework;
 using Pharm2U.ViewModels;
+using System;
+using System.Windows;
 
 namespace Pharm2U.Models.Data
 {
+    /// <summary>
+    /// A class for storing the filtered data from an address and zip code.
+    /// Allows the City, State information to be conveniently displayed and retrieved.
+    /// </summary>
     public class AddressData
     {
         public string Zip { get; set; }
@@ -12,6 +18,23 @@ namespace Pharm2U.Models.Data
         public string State { get; set; } = null;
         public string Country { get; set; } = null;
         public string Street { get; set; }
+
+        public string CityStateString
+        {
+            get
+            {
+                // If a parameter is null, return it as "N/A" in the display
+                string unknownstr = "N/A";
+                string str = string.Empty;
+                str += ((City == null) || (City == String.Empty) ? unknownstr : City) + ", ";
+                str += ((State == null) || (State == String.Empty) ? unknownstr : State) + ", ";
+                str += ((Country == null) || (Country == String.Empty) ? unknownstr : Country) + ", ";
+                str += Zip;
+
+                return str;
+
+            }
+        }
 
         /// <summary>
         /// Default constructor
@@ -37,5 +60,9 @@ namespace Pharm2U.Models.Data
                 }
             }
         }
+
+
+
+
     }
 }
