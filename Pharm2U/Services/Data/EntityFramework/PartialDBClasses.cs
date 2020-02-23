@@ -45,7 +45,7 @@ namespace Pharm2U.Services.Data.EntityFramework
             this.FoodCost = (decimal)2.00;
             this.OTCMedCost = (decimal)3.00;
             this.PrescriptionCost = (decimal)3.00;
-            this.Tax = (decimal)1.00;
+            this.Tax = (decimal)7.00;
             this.TotalCost = (decimal)10.00;
             this.AuthCode = "auth code";
             this.TransactionKey = "trans key";
@@ -174,7 +174,7 @@ namespace Pharm2U.Services.Data.EntityFramework
         /// <summary>
         /// Constructor accepting parameters
         /// </summary>
-        public P2U_OrderFood(int id, int food_id, int order_id, decimal price, int qty)
+        public P2U_OrderFood(int id, int food_id, int order_id, decimal price, int qty, bool taxable)
         {
             this.ItemID = id;
             this.ItemCreatedBy = 100;
@@ -187,7 +187,7 @@ namespace Pharm2U.Services.Data.EntityFramework
             this.OrderID = order_id;
             this.Price = price;
             this.Qty = qty;
-            this.Taxable = false;
+            this.Taxable = taxable;
         }
 
         /// <summary>
@@ -285,7 +285,7 @@ namespace Pharm2U.Services.Data.EntityFramework
         /// <summary>
         /// Constructor accepting parameters
         /// </summary>
-        public P2U_OrderOTCMeds(int id, int otcmed_id, int order_id, decimal price, int qty)
+        public P2U_OrderOTCMeds(int id, int otcmed_id, int order_id, decimal price, int qty, bool taxable)
         {
             this.ItemID = id;
             this.ItemCreatedBy = 100;
@@ -298,7 +298,7 @@ namespace Pharm2U.Services.Data.EntityFramework
             this.OrderID = order_id;
             this.Price = price;
             this.Qty = qty;
-            this.Taxable = false;
+            this.Taxable = taxable;
         }
 
         /// <summary>

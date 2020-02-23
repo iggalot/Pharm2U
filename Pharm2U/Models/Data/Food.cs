@@ -7,6 +7,8 @@ namespace Pharm2U.Models.Data
     /// </summary>
     public class Food
     {
+        private decimal _totalPrice = 0.00m;
+
         public int ItemID { get; set; }
         public Nullable<int> ItemCreatedBy { get; set; }
         public Nullable<System.DateTime> ItemCreatedWhen { get; set; }
@@ -50,6 +52,29 @@ namespace Pharm2U.Models.Data
         /// </summary>
         public decimal Price { get; set; }
 
+        /// <summary>
+        /// Returns the total price
+        /// </summary>
+        public decimal TotalPrice { get; set; }
+        
+
+        /// <summary>
+        /// Creates the Qty and Unit Price string for this item (e.g.: 2 @ $2.22)
+        /// </summary>
+        public string QtyAndUnitPriceString
+        {
+            get => Qty.ToString() + " @ $" + Price.ToString();
+        }
+
+        /// <summary>
+        /// The total price as a string
+        /// </summary>
+        public string TotalPriceString
+        {
+            get => "$" + TotalPrice.ToString();
+        }
+
+        #region Constructor
         public Food(int id, string name, string description, int qty, decimal price, bool taxable, string type)
         {
             Id = id;
@@ -59,7 +84,10 @@ namespace Pharm2U.Models.Data
             Price = price;
             Taxable = taxable;
             Type = type;
-        }
+
+            TotalPrice = Qty * Price;
+        } 
+        #endregion
 
         /// <summary>
         /// Display method for this class

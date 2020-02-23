@@ -42,6 +42,29 @@
         /// </summary>
         public decimal Price { get; set; }
 
+
+        /// <summary>
+        /// Returns the total price
+        /// </summary>
+        public decimal TotalPrice { get; set; }
+
+
+        /// <summary>
+        /// Creates the Qty and Unit Price string for this item (e.g.: 2 @ $2.22)
+        /// </summary>
+        public string QtyAndUnitPriceString
+        {
+            get => Qty.ToString() + " @ $" + Price.ToString();
+        }
+
+        /// <summary>
+        /// The total price as a string
+        /// </summary>
+        public string TotalPriceString
+        {
+            get => "$" + TotalPrice.ToString();
+        }
+
         #endregion
 
         #region Constructor
@@ -62,6 +85,8 @@
             Qty = qty;
             Price = price;
             Taxable = taxable;
+
+            TotalPrice = Qty * Price;
         }
         #endregion
 

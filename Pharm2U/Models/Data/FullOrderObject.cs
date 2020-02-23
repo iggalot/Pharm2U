@@ -13,6 +13,7 @@ namespace Pharm2U.Models.Data
     /// </summary>
     public class FullOrderObject
     {
+
         #region Public Properties
 
         /// <summary>
@@ -53,6 +54,45 @@ namespace Pharm2U.Models.Data
         public ObservableCollection<OTCMed> OTCMedsList { get; set; }
 
         public Pharmacy Pharmacy { get; set; }
+
+
+
+        /// <summary>
+        /// Returns the subtotal price not including tax.
+        /// </summary>
+        public decimal SubTotalPrice { get; set; }
+
+        /// <summary>
+        /// The total tax for the taxable items in the Food and OTCMed list
+        /// </summary>
+        public decimal TaxPrice { get; set; }
+
+        /// <summary>
+        /// The delivery price for this order
+        /// </summary>
+        public decimal? DeliveryPrice { get => Order.DeliveryCost; }
+
+        /// <summary>
+        /// The total price
+        /// </summary>
+        public decimal TotalPrice { get; set; }
+
+        /// <summary>
+        /// The subtotal price as a string
+        /// </summary>
+        public string SubTotalPriceString
+        {
+            get => "$" + SubTotalPrice.ToString();
+        }
+
+        /// <summary>
+        /// The tax price as a string
+        /// </summary>
+        public string TaxPriceString
+        {
+            get => "$" + TaxPrice.ToString();
+        }
+
         #endregion
 
         #region Constructor
@@ -178,9 +218,61 @@ namespace Pharm2U.Models.Data
                     break;
                 }
             }
+
+            SubTotalPrice = ComputeSubtotal();
+            TaxPrice = ComputeTax();
+
             #endregion
         }
 
+        #endregion
+
+        #region Private Methods
+        /// <summary>
+        /// Compute the subtotal of food and otc med items
+        /// </summary>
+        /// <returns></returns>
+        private decimal ComputeSubtotal()
+        {
+            decimal sum = 0.00m;
+
+            foreach (Food item in FoodList)
+            {
+                sum += item.Qty * item.Price;
+            }
+
+            foreach (OTCMed item in OTCMedsList)
+            {
+                sum += item.Qty * item.Price;
+            }
+
+            return sum;
+        }
+
+        /// <summary>
+        /// Compute the tax for taxable food and otc med items
+        /// </summary>
+        /// <returns></returns>
+        private decimal ComputeTax()
+        {
+            decimal sum = 0.00m;
+
+            foreach (Food item in FoodList)
+            {
+                if (item.Taxable == true)
+                    sum += item.Qty * item.Price;
+            }
+
+            foreach (OTCMed item in OTCMedsList)
+            {
+                if (item.Taxable == true)
+                    sum += item.Qty * item.Price;
+            }
+
+            double taxrate = (Order.Tax >= 0) ? (double)Order.Tax / 100.0 : 1.00 / 100.0;
+            sum *= (decimal)taxrate;
+            return sum;
+        }
         #endregion
     };
 
