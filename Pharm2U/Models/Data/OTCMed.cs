@@ -1,29 +1,19 @@
-﻿using System;
-
-namespace Pharm2U.Models.Data
+﻿namespace Pharm2U.Models.Data
 {
     /// <summary>
-    /// This object is used to compile the food object record after all the tables have been searched and merged.
+    /// A class for containing the OTC med object.
+    /// This is built from a merge of the P2U_OrderOTCMed table and the P2U_Medications
     /// </summary>
-    public class Food
+    public class OTCMed
     {
-        private decimal _totalPrice = 0.00m;
-
-        public int ItemID { get; set; }
-        public Nullable<int> ItemCreatedBy { get; set; }
-        public Nullable<System.DateTime> ItemCreatedWhen { get; set; }
-        public Nullable<int> ItemModifiedBy { get; set; }
-        public Nullable<System.DateTime> ItemModifiedWhen { get; set; }
-        public Nullable<int> ItemOrder { get; set; }
-        public System.Guid ItemGUID { get; set; }
-
+        #region Public Properties
         /// <summary>
         /// Id number
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Name of the food
+        /// Name of the OTC item
         /// </summary>
         public string Name { get; set; }
 
@@ -33,7 +23,7 @@ namespace Pharm2U.Models.Data
         public int Qty { get; set; }
 
         /// <summary>
-        /// Type of food (solid, liquid, jello?)
+        /// Type of OTC item (solid, liquid, jello?)
         /// </summary>
         public string Type { get; set; }
 
@@ -52,11 +42,12 @@ namespace Pharm2U.Models.Data
         /// </summary>
         public decimal Price { get; set; }
 
+
         /// <summary>
         /// Returns the total price
         /// </summary>
         public decimal TotalPrice { get; set; }
-        
+
 
         /// <summary>
         /// Creates the Qty and Unit Price string for this item (e.g.: 2 @ $2.22)
@@ -74,8 +65,19 @@ namespace Pharm2U.Models.Data
             get => "$" + TotalPrice.ToString();
         }
 
+        #endregion
+
         #region Constructor
-        public Food(int id, string name, string description, int qty, decimal price, bool taxable, string type)
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="name">Name of the item</param>
+        /// <param name="description">Description of the item</param>
+        /// <param name="qty">Qty of the item in the order</param>
+        /// <param name="price">Price of the items in the order</param>
+        /// <param name="taxable">Is the item taxable</param>
+        public OTCMed(int id, string name, string description, int qty, decimal price, bool taxable)
         {
             Id = id;
             Name = name;
@@ -83,12 +85,12 @@ namespace Pharm2U.Models.Data
             Qty = qty;
             Price = price;
             Taxable = taxable;
-            Type = type;
 
             TotalPrice = Qty * Price;
-        } 
+        }
         #endregion
 
+        #region Public Methods
         /// <summary>
         /// Display method for this class
         /// </summary>
@@ -97,7 +99,7 @@ namespace Pharm2U.Models.Data
         {
             string str = string.Empty;
 
-            str += "---- Food ID: " + Id.ToString() + "   Name : " + Name + "   Type: " + Type;
+            str += "---- OTCMed ID: " + Id.ToString() + "   Name : " + Name + "   Type: " + Type;
 
             return str;
         }
@@ -109,6 +111,7 @@ namespace Pharm2U.Models.Data
         public override string ToString()
         {
             return this.Display();
-        }
+        } 
+        #endregion
     }
 }

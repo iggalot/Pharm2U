@@ -108,10 +108,12 @@
     </Compile>
     <Compile Include="Converters\VisibilityConverters.cs" />
     <Compile Include="IoC\IoCContainer.cs" />
+    <Compile Include="Models\Data\AddressData.cs" />
     <Compile Include="Models\Data\Customer.cs" />
     <Compile Include="Models\Data\Food.cs" />
     <Compile Include="Models\Data\FullOrderObject.cs" />
-    <Compile Include="Models\Data\OTC.cs" />
+    <Compile Include="Models\Data\OTCMed.cs" />
+    <Compile Include="Models\Data\Pharmacy.cs" />
     <Compile Include="Models\OrderStatus.cs" />
     <Compile Include="Services\Data\EntityFramework\PartialDBClasses.cs" />
     <Compile Include="Services\Data\EntityFramework\EntityFrameworkDataService.cs" />
@@ -175,9 +177,13 @@
     <Compile Include="Services\Data\IDataService.cs" />
     <Compile Include="Services\Data\IDataTables.cs" />
     <Compile Include="Services\Data\MockDataService.cs" />
+    <Compile Include="Services\Data\MockData\MockZipCodeDataService.cs" />
+    <Compile Include="Services\Data\MockData\MockPharmacyDataService.cs" />
     <Compile Include="Services\Data\MockData\MockCustomerDataService.cs" />
+    <Compile Include="Services\Data\MockData\MockOTCMedDataService.cs" />
     <Compile Include="Services\Data\MockData\MockFoodDataService.cs" />
     <Compile Include="Services\Data\MockData\MockOrderDataService.cs" />
+    <Compile Include="Services\Data\MockData\MockOrderOTCMedsDataService.cs" />
     <Compile Include="Services\Data\MockData\MockOrderFoodDataService.cs" />
     <Compile Include="Services\DatabaseManager\IDatabaseManager.cs" />
     <Compile Include="Services\DialogManager\IDialogService.cs" />
@@ -188,6 +194,7 @@
     <Compile Include="Services\Printing\PrintWindow.xaml.cs">
       <DependentUpon>PrintWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\Printing\PrintWindowViewModel.cs" />
     <Compile Include="Utilities\ObservableObject.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
     <Compile Include="Utilities\VisualTreeHelperExtensions.cs" />

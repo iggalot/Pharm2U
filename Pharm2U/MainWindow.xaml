@@ -37,7 +37,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             
-            <Border Grid.Column="0">
+            <Border Grid.Column="0" Margin="0">
                 <!-- List Area -->
                 <StackPanel Orientation="Vertical" Grid.Column="0">
                     <Button Content="Show Orders" Command="{Binding OrderListVM.LoadOrdersCommand}"/>
@@ -52,17 +52,20 @@
                 </StackPanel>
             </Border>
 
-            <Border Grid.Column="1">
-                <!-- Details Area -->
+            <!-- Details Area -->
+            <Border Grid.Column="1" Margin="0" Padding="0">
+
                 <StackPanel Orientation="Vertical" Grid.Column="1">
                     <TextBlock Text="Details" Background="LightGray" />
                     <ScrollViewer 
+                        Width="Auto"
                         Height="{Binding RelativeSource={RelativeSource FindAncestor, 
                         AncestorType={x:Type Grid}},Path=ActualHeight}"
                         >
                         <Grid>
                             <StackPanel Orientation="Vertical">
-                                <v:OrderDetailsView DataContext="{Binding CurrentOrderListVM.OrdersVM.FullSelectedOrder}" />
+                                <v:OrderDetailsView DataContext="{Binding CurrentOrderListVM.OrdersVM.FullSelectedOrder}" 
+                                                    VerticalContentAlignment="Top"/>
                             </StackPanel>
                        </Grid>
                     </ScrollViewer>

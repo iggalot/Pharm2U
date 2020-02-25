@@ -3,29 +3,12 @@ using System;
 
 namespace Pharm2U.Models.Data
 {
-    public class Customer
+    public class Customer : P2U_Customer
     {
         #region Public Properties
 
-        /// <summary>
-        /// Fields taken from P2U_Customer since multiple inheritance isn't allowed.
-        /// </summary>
-        public int ItemID { get; set; }
-        public Nullable<int> ItemCreatedBy { get; set; }
-        public Nullable<System.DateTime> ItemCreatedWhen { get; set; }
-        public Nullable<int> ItemModifiedBy { get; set; }
-        public Nullable<System.DateTime> ItemModifiedWhen { get; set; }
-        public Nullable<int> ItemOrder { get; set; }
-        public System.Guid ItemGUID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string ContactMethod { get; set; }
-        public string Phone { get; set; }
-        public string Email { get; set; }
-        public string StreetAddress { get; set; }
-        public string Zip { get; set; }
-        public string AddressType { get; set; }
-
+        // Returns the city, state, info for the given zip
+        public AddressData AddressInfo { get; set; } = null;
         #endregion
 
         #region Constructors
@@ -38,7 +21,7 @@ namespace Pharm2U.Models.Data
         /// <param name="address"></param>
         /// <param name="phone"></param>
         /// <param name="email"></param>
-        public Customer(int id, string first, string last, string address, string phone, string email)
+        public Customer(int id, string first, string last, string address, string phone, string email, string zip, string type)
         {
             ItemCreatedWhen = DateTime.Now;
             ItemModifiedWhen = DateTime.Now;
@@ -48,6 +31,11 @@ namespace Pharm2U.Models.Data
             StreetAddress = address;
             Email = email;
             Phone = phone;
+            Zip = zip;
+            AddressType = type;
+
+            // Create the address data object for the customer
+            AddressInfo = new AddressData(address, zip);
         }
 
         /// <summary>
@@ -71,6 +59,9 @@ namespace Pharm2U.Models.Data
             StreetAddress = customer.StreetAddress;
             Zip = customer.Zip;
             AddressType = customer.AddressType;
+
+            // Create the address data object for the customer
+            AddressInfo = new AddressData(StreetAddress, Zip);
         }
 
         #endregion
