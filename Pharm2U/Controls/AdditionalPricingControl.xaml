@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Pharm2U.Controls.AdditionalPricingControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pharm2U.Controls"
+             mc:Ignorable="d"
+             >
+    <Border Margin="20 5 20 5">
+        <StackPanel Orientation="Vertical">
+            <StackPanel HorizontalAlignment="Right" Margin="0 0 0 10" Orientation="Horizontal">
+                <Label FontSize="12" Content="Additional Items Total"/>
+                <Label FontSize="12" Content="{Binding SubTotalPrice}"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right" Margin="0 0 0 10" Orientation="Horizontal">
+                <Label FontSize="12" Content="Tax "/>
+                <Label FontSize="12" Content="{Binding TaxPrice}"/>
+            </StackPanel>
+            <StackPanel  HorizontalAlignment="Right" Margin="0 0 0 10" Orientation="Horizontal">
+                <Label FontSize="12" Content="Delivery Fee "/>
+                <Label FontSize="12" Content="{Binding DeliveryPrice}"/>
+            </StackPanel>
+            <StackPanel  HorizontalAlignment="Right" Margin="0 0 0 10" Orientation="Horizontal">
+                <Label FontSize="12" Content="Total Price "/>
+                <Label FontSize="12" Content="{Binding TotalPrice}"/>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

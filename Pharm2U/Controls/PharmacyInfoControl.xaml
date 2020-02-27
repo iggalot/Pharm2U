@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="Pharm2U.Controls.PharmacyInfoControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pharm2U.Controls"
+             mc:Ignorable="d" 
+             >
+    <Border Margin="20 5 20 5">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.Name, FallbackValue=Error}"/>
+                <Label FontSize="12" Padding="0" Margin="0" Content="     (ID #: "/>
+                <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.ItemID, FallbackValue=Error}"/>
+                <Label FontSize="12" Padding="0" Margin="0" Content=")"/>
+            </StackPanel>
+
+            <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.Address, FallbackValue=Error}"/>
+            <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.AddressInfo.CityStateString, FallbackValue=Error}"/>
+            <Label FontSize="12" Padding="0" Margin="0" Content="{Binding Pharmacy.Phone, FallbackValue=Error}" />
+        </StackPanel>
+    </Border>
+</UserControl>

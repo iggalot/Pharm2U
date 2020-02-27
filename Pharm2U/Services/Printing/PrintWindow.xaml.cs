@@ -67,7 +67,7 @@ namespace Pharm2U.Services.Printing
         void fixedPage_Loaded(object sender, RoutedEventArgs e)
         {
             var fixedDocument = sender as FixedPage;
-            CalculateSize(fixedDocument);
+           // CalculateSize(fixedDocument);
         }
         private void CalculateSize(FixedPage fixedPage)
         {

@@ -103,15 +103,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\AdditionalPricingControl.xaml.cs">
+      <DependentUpon>AdditionalPricingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OTCMedItemListControl.xaml.cs">
+      <DependentUpon>OTCMedItemListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FoodItemListControl.xaml.cs">
+      <DependentUpon>FoodItemListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\OrderListItemControl.xaml.cs">
       <DependentUpon>OrderListItemControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\VisibilityConverters.cs" />
+    <Compile Include="Controls\CustomerInfoControl.xaml.cs">
+      <DependentUpon>CustomerInfoControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PharmacyInfoControl.xaml.cs">
+      <DependentUpon>PharmacyInfoControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IoC\IoCContainer.cs" />
-    <Compile Include="Models\Data\AddressData.cs" />
+    <Compile Include="ValueConverters\VisibilityConverters.cs" />
+    <Compile Include="ViewModels\EditorViewModels\EditAdditionalInfoVM.cs" />
+    <Compile Include="ViewModels\EditorViewModels\EditPharmacyVM.cs" />
+    <Compile Include="ViewModels\EditorViewModels\EditOrderOTCMedsVM.cs" />
+    <Compile Include="ViewModels\EditorViewModels\EditOrderFoodVM.cs" />
+    <Compile Include="ViewModels\EditorViewModels\EditCustomerVM.cs" />
+    <Compile Include="ViewModels\InfoViewModels\AddressDataViewModel.cs" />
     <Compile Include="Models\Data\Customer.cs" />
     <Compile Include="Models\Data\Food.cs" />
-    <Compile Include="Models\Data\FullOrderObject.cs" />
+    <Compile Include="ViewModels\OrderDataViewModels\FullOrderObjectViewModel.cs" />
     <Compile Include="Models\Data\OTCMed.cs" />
     <Compile Include="Models\Data\Pharmacy.cs" />
     <Compile Include="Models\OrderStatus.cs" />
@@ -200,18 +220,56 @@
     <Compile Include="Utilities\VisualTreeHelperExtensions.cs" />
     <Compile Include="ValueConverters\ApplicationToDataModelConverter.cs" />
     <Compile Include="ViewModels\ApplicationViewModel.cs" />
-    <Compile Include="ViewModels\DataViewModels\CustomerListViewModel.cs" />
-    <Compile Include="ViewModels\DataViewModels\CustomersVM.cs" />
-    <Compile Include="ViewModels\DataViewModels\OrderListViewModel.cs" />
-    <Compile Include="ViewModels\DataViewModels\OrdersVM.cs" />
+    <Compile Include="ViewModels\OrderDataViewModels\CustomerListViewModel.cs" />
+    <Compile Include="ViewModels\OrderDataViewModels\CustomersVM.cs" />
+    <Compile Include="ViewModels\OrderDataViewModels\OrderListViewModel.cs" />
+    <Compile Include="ViewModels\OrderDataViewModels\OrdersVM.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\Editors\EditAdditionalInfoView.xaml.cs">
+      <DependentUpon>EditAdditionalInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Editors\EditOrderOTCMedsView.xaml.cs">
+      <DependentUpon>EditOrderOTCMedsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Editors\EditOrderFoodView.xaml.cs">
+      <DependentUpon>EditOrderFoodView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Editors\EditPharmacyView.xaml.cs">
+      <DependentUpon>EditPharmacyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Editors\EditCustomerView.xaml.cs">
+      <DependentUpon>EditCustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditorWindow.xaml.cs">
+      <DependentUpon>EditorWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Orders\OrderListView.xaml.cs">
       <DependentUpon>OrderListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Orders\OrderDetailsView.cs">
       <DependentUpon>OrderDetailsView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Controls\AdditionalPricingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OTCMedItemListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\FoodItemListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\OrderListItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CustomerInfoControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\PharmacyInfoControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -228,6 +286,30 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Services\Printing\PrintWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Editors\EditAdditionalInfoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Editors\EditOrderOTCMedsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Editors\EditOrderFoodView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Editors\EditPharmacyView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Editors\EditCustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,14 +1,10 @@
-﻿using Pharm2U.Models;
-using Pharm2U.Models.Data;
+﻿using Pharm2U.Models.OrderDataViewModels;
 using Pharm2U.Services.Data;
 using Pharm2U.Services.Data.EntityFramework;
-using Pharm2U.Services.Printing;
 using Pharm2U.Utilities;
 using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Input;
 
-namespace Pharm2U.ViewModels.DataViewModels
+namespace Pharm2U.ViewModels.OrderDataViewModels
 {
 
     public class OrdersVM : ObservableObject
@@ -19,7 +15,7 @@ namespace Pharm2U.ViewModels.DataViewModels
         /// The currently selected order
         /// </summary>
         private P2U_Order _selectedOrder;
-        private FullOrderObject _selectedFullOrder;
+        private FullOrderObjectViewModel _selectedFullOrder;
 
         /// <summary>
         /// The data service that was used to create this view model
@@ -33,7 +29,7 @@ namespace Pharm2U.ViewModels.DataViewModels
         /// <summary>
         /// The currently selected order from the list
         /// </summary>
-        public FullOrderObject FullSelectedOrder
+        public FullOrderObjectViewModel FullSelectedOrder
         {
             get
             {
@@ -47,7 +43,7 @@ namespace Pharm2U.ViewModels.DataViewModels
                     return;
 
                 // Load our full order information from the order ID
-                _selectedFullOrder = new FullOrderObject(SelectedOrder.ItemID);
+                _selectedFullOrder = new FullOrderObjectViewModel(SelectedOrder.ItemID);
 
                 // Signal that we have changed the selected order from the list
                 OnPropertyChanged(ref _selectedFullOrder, value);
@@ -71,7 +67,7 @@ namespace Pharm2U.ViewModels.DataViewModels
                 //MessageBox.Show("Order #" + value.ItemID + " selected");
 
                 // Load our full order information from the order ID
-                _selectedFullOrder = new FullOrderObject(value.ItemID);
+                _selectedFullOrder = new FullOrderObjectViewModel(value.ItemID);
 
                 // Signal that we have changed the selected order from the list
                 OnPropertyChanged(ref _selectedOrder, value);

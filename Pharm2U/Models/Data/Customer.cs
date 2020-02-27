@@ -1,4 +1,5 @@
 ﻿using Pharm2U.Services.Data.EntityFramework;
+using Pharm2U.ViewModels.InfoiViewModels;
 using System;
 
 namespace Pharm2U.Models.Data
@@ -8,7 +9,7 @@ namespace Pharm2U.Models.Data
         #region Public Properties
 
         // Returns the city, state, info for the given zip
-        public AddressData AddressInfo { get; set; } = null;
+        public AddressDataViewModel AddressInfo { get; set; } = null;
         #endregion
 
         #region Constructors
@@ -35,11 +36,11 @@ namespace Pharm2U.Models.Data
             AddressType = type;
 
             // Create the address data object for the customer
-            AddressInfo = new AddressData(address, zip);
+            AddressInfo = new AddressDataViewModel(address, zip);
         }
 
         /// <summary>
-        /// Constructor that takes an Entitity Framework customer type and creates a Customer model object
+        /// Constructor that takes an Entitity Framework customer type and creates our Customer model object
         /// </summary>
         /// <param name=""></param>
         public Customer(P2U_Customer customer)
@@ -61,7 +62,7 @@ namespace Pharm2U.Models.Data
             AddressType = customer.AddressType;
 
             // Create the address data object for the customer
-            AddressInfo = new AddressData(StreetAddress, Zip);
+            AddressInfo = new AddressDataViewModel(StreetAddress, Zip);
         }
 
         #endregion

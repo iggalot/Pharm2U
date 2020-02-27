@@ -1,18 +1,21 @@
-﻿using Pharm2U.Services.Data;
+﻿using Pharm2U.Models.Data;
+using Pharm2U.Services.Data;
 using Pharm2U.Services.Data.EntityFramework;
+using Pharm2U.Utilities;
 using Pharm2U.ViewModels;
 using System.Collections.ObjectModel;
 using System.Windows;
 
-namespace Pharm2U.Models.Data
+namespace Pharm2U.Models.OrderDataViewModels
 {
     /// <summary>
     /// This object assembles the various database values for the selected object.
     /// It's basically one huge table MERGE operation on multiple tables since there are no foreign keys
     /// currently used in the database.
     /// </summary>
-    public class FullOrderObject
+    public class FullOrderObjectViewModel : ObservableObject
     {
+
 
         #region Public Properties
 
@@ -53,7 +56,12 @@ namespace Pharm2U.Models.Data
         /// </summary>
         public ObservableCollection<OTCMed> OTCMedsList { get; set; }
 
+        /// <summary>
+        /// The assembled pharmacy object that contains the merged data for the Address and P2U_Pharmacy data
+        /// </summary>
         public Pharmacy Pharmacy { get; set; }
+
+
 
 
 
@@ -96,7 +104,11 @@ namespace Pharm2U.Models.Data
         #endregion
 
         #region Constructor
-        public FullOrderObject(int num)
+        /// <summary>
+        /// Constructor that creates our full object viuew model
+        /// </summary>
+        /// <param name="num"></param>
+        public FullOrderObjectViewModel(int num)
         {
             // retrieve the data tables from the application view model
             IDataTables dt = IoC.IoCContainer.Get<ApplicationViewModel>().DataTables;
@@ -159,14 +171,7 @@ namespace Pharm2U.Models.Data
                     {
 
                         // Get the name and description of the item
-                        FoodList.Add(
-                            new Food(food.ItemID,
-                                     food.Name,
-                                     food.Description,
-                                     item.Qty,
-                                     item.Price,
-                                     item.Taxable,
-                                     food.Type));
+                        FoodList.Add(new Food(item, food));
                         break;
                     }
                 }

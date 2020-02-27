@@ -4,13 +4,13 @@ using Pharm2U.ViewModels;
 using System;
 using System.Windows;
 
-namespace Pharm2U.Models.Data
+namespace Pharm2U.ViewModels.InfoiViewModels
 {
     /// <summary>
     /// A class for storing the filtered data from an address and zip code.
     /// Allows the City, State information to be conveniently displayed and retrieved.
     /// </summary>
-    public class AddressData
+    public class AddressDataViewModel
     {
         public string Zip { get; set; }
         public string City { get; set; } = null;
@@ -41,7 +41,7 @@ namespace Pharm2U.Models.Data
         /// </summary>
         /// <param name="street">Street address</param>
         /// <param name="zip">Specified zip code</param>
-        public AddressData(string street, string zip)
+        public AddressDataViewModel(string street, string zip)
         {
             this.Street = street;
             this.Zip = zip;
@@ -60,9 +60,5 @@ namespace Pharm2U.Models.Data
                 }
             }
         }
-
-
-
-
     }
 }

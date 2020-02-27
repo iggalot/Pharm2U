@@ -3,7 +3,7 @@ using Pharm2U.Services.Data;
 using Pharm2U.Services.Data.EntityFramework;
 using Pharm2U.Services.Data.MockData;
 using Pharm2U.Utilities;
-using Pharm2U.ViewModels.DataViewModels;
+using Pharm2U.ViewModels.OrderDataViewModels;
 using System;
 using System.Collections.ObjectModel;
 
@@ -18,6 +18,11 @@ namespace Pharm2U.ViewModels
         private CustomerListViewModel _customerListVM;
  //       private OrderFoodListViewModel _orderFoodListVM;
         private OrderListViewModel _currentOrderListVM;
+
+        /// <summary>
+        /// Is this view model currently in edit mnode
+        /// </summary>
+        bool _mIsEditMode;
         #endregion
 
         #region Public Properties
@@ -57,7 +62,30 @@ namespace Pharm2U.ViewModels
         /// Our data model data service
         /// </summary>
         public IDataTables DataTables { get; set; }
-        
+
+
+        /// <summary>
+        /// A flag to indicate whether the application is editing a document or should be viewing it.
+        /// </summary>
+        public bool IsEditMode
+        {
+            get => _mIsEditMode;
+            set
+            {
+                // If the value has not change...do nothing
+                if (value == _mIsEditMode)
+                    return;
+
+                // Otherwise
+                _mIsEditMode = value;
+
+                // Signal that this property has changed ti the UI.
+                OnPropertyChanged("IsEditMode");
+
+
+            }
+        }
+
         #endregion
 
         #region Default Constructor
@@ -71,19 +99,16 @@ namespace Pharm2U.ViewModels
             // Load our order Data
             DataTables = new MockDataService();
 
-            //OrderDataService = new MockOrderDataService();
-            //CustomerDataService = new MockCustomerDataService();
-
             // Create our order list view model for our data set
             OrderListVM = new OrderListViewModel(DataTables.OrderData);
             CustomerListVM = new CustomerListViewModel(DataTables.CustomerData);
-            
-            //OrderFoodListVM = new OrderFoodListViewModel(DataTables.OrderFoodData);
 
             // Set our current order list
             CurrentOrderListVM = OrderListVM;
 
             Console.WriteLine(DataTables.Display());
+
+            IsEditMode = false;
         }
 
         #endregion

@@ -1,4 +1,9 @@
-﻿using Pharm2U.Services.Printing;
+﻿using Pharm2U.Models.OrderDataViewModels;
+using Pharm2U.Services.Printing;
+using Pharm2U.ViewModels;
+using Pharm2U.ViewModels.EditorViewModels;
+using Pharm2U.Views.Editors;
+using Pharm2U.Windows;
 using System.Windows.Controls;
 
 namespace Pharm2U.Views.Orders
@@ -21,79 +26,51 @@ namespace Pharm2U.Views.Orders
 
         }
 
-    //    private void Print_Click(object sender, System.Windows.RoutedEventArgs e)
-    //    {
+        /// <summary>
+        /// Engage the editor for a specific item
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DoEdit_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
 
-    //        //var str = XamlWriter.Save(fixeddoc);
-    //        //var stringReader = new StringReader(str);
-    //        //var xmlReader = XmlReader.Create(stringReader);
-    //       // var CloneDoc = XamlReader.Load(xmlReader) as FlowDocument;
+            if (sender == null)
+                return;
 
-    //        PrintDialog dialog = new PrintDialog();
-    //        if (dialog.ShowDialog().Value)
-    //        {
-    //            //CloneDoc.PageHeight = dialog.PrintableAreaHeight;
-    //            //CloneDoc.PageWidth = dialog.PrintableAreaWidth;
-    //            IDocumentPaginatorSource idocument = fixeddoc;
-    ////            IDocumentPaginatorSource idocument = CloneDoc as IDocumentPaginatorSource;
-    //            MessageBox.Show(idocument.DocumentPaginator.PageCount.ToString());
- 
-    //            dialog.PrintDocument(idocument.DocumentPaginator, "Printing FlowDocument");
+            // check if we are already in editing mode
+            if (IoC.IoCContainer.Get<ApplicationViewModel>().IsEditMode == true)
+                return;
 
+            Button btn = sender as Button;
 
-    //        }
-    //        return;
+            // Grab our data context for the button that was clicked.
+            FullOrderObjectViewModel context = btn.DataContext as FullOrderObjectViewModel;
 
-    //        //DoThePrint(flowdoc);
+            EditorWindow win = new EditorWindow();
 
-    //        //// Set up our paginator
-    //        //DocumentPaginator paginator = ((IDocumentPaginatorSource)flowdoc).DocumentPaginator;
-    //        //dialog.PrintDocument(paginator, "Printed manifest");
+            if (btn.Name == "EditCustomer")
+            {
+                win.DataContext = new EditCustomerVM();
+            }
+            if (btn.Name == "EditPharmacy")
+            {
+                win.DataContext = new EditPharmacyVM();
+            }
+            if (btn.Name == "EditOrderFoods")
+            {
+                win.DataContext = new EditOrderFoodVM();
+            }
+            if (btn.Name == "EditOrderOTCMeds")
+            {
+                win.DataContext = new EditOrderOTCMedsVM();
+            }
+            if (btn.Name == "EditAdditionalInfo")
+            {
+                win.DataContext = new EditAdditionalInfoVM();
+            }
 
-    //    }
-
-    //    private void DoThePrint(System.Windows.Documents.FlowDocument document)
-    //    {
-    //        // Clone the source document's content into a new FlowDocument.
-    //        // This is because the pagination for the printer needs to be
-    //        // done differently than the pagination for the displayed page.
-    //        // We print the copy, rather that the original FlowDocument.
-    //        System.IO.MemoryStream s = new System.IO.MemoryStream();
-    //        TextRange source = new TextRange(document.ContentStart, document.ContentEnd);
-    //        source.Save(s, DataFormats.Xaml);
-    //        FlowDocument copy = new FlowDocument();
-    //        TextRange dest = new TextRange(copy.ContentStart, copy.ContentEnd);
-    //        dest.Load(s, DataFormats.Xaml);
-
-    //        // Create a XpsDocumentWriter object, implicitly opening a Windows common print dialog,
-    //        // and allowing the user to select a printer.
-
-    //        // get information about the dimensions of the seleted printer+media.
-    //        PrintDocumentImageableArea ia = null;
-    //        System.Windows.Xps.XpsDocumentWriter docWriter = PrintQueue.CreateXpsDocumentWriter(ref ia);
-
-    //        if (docWriter != null && ia != null)
-    //        {
-    //            DocumentPaginator paginator = ((IDocumentPaginatorSource)copy).DocumentPaginator;
-
-    //            // Change the PageSize and PagePadding for the document to match the CanvasSize for the printer device.
-    //            paginator.PageSize = new Size(ia.MediaSizeWidth, ia.MediaSizeHeight);
-    //            Thickness t = new Thickness(72);  // copy.PagePadding;
-    //            copy.PagePadding = new Thickness(
-    //                             Math.Max(ia.OriginWidth, t.Left),
-    //                               Math.Max(ia.OriginHeight, t.Top),
-    //                               Math.Max(ia.MediaSizeWidth - (ia.OriginWidth + ia.ExtentWidth), t.Right),
-    //                               Math.Max(ia.MediaSizeHeight - (ia.OriginHeight + ia.ExtentHeight), t.Bottom));
-
-    //            copy.ColumnWidth = double.PositiveInfinity;
-    //            //copy.PageWidth = 528; // allow the page to be the natural with of the output device
-
-    //            // Send content to the printer.
-    //            docWriter.Write(paginator);
-    //        }
-
-    //    }
-
+            win.Show();
+        }
 
     }
 }

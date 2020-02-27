@@ -1,4 +1,5 @@
 ﻿using Pharm2U.Services.Data.EntityFramework;
+using Pharm2U.ViewModels.InfoiViewModels;
 using System;
 
 namespace Pharm2U.Models.Data
@@ -17,7 +18,7 @@ namespace Pharm2U.Models.Data
         public string Address { get; set; }
 
         // Returns the city, state, info for the given zip
-        public AddressData AddressInfo { get; set; } = null;
+        public AddressDataViewModel AddressInfo { get; set; } = null;
         public string Phone { get; set; }
         public string Zip { get; set; }
 
@@ -66,7 +67,7 @@ namespace Pharm2U.Models.Data
             OrderEmailSubject = "default order email subject";
 
             // Create the address data object for the customer
-            AddressInfo = new AddressData(address, zip);
+            AddressInfo = new AddressDataViewModel(address, zip);
         }
 
         /// <summary>
@@ -99,7 +100,7 @@ namespace Pharm2U.Models.Data
             OrderEmailSubject = pharmacy.OrderEmailSubject;
 
             // Create the address data object for the customer
-            AddressInfo = new AddressData(Address, Zip);
+            AddressInfo = new AddressDataViewModel(Address, Zip);
         }
 
         #endregion

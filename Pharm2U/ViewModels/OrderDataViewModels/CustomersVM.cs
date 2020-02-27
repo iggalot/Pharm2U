@@ -3,7 +3,7 @@ using Pharm2U.Services.Data.EntityFramework;
 using Pharm2U.Utilities;
 using System.Collections.ObjectModel;
 
-namespace Pharm2U.ViewModels.DataViewModels
+namespace Pharm2U.ViewModels.OrderDataViewModels
 {
     public class CustomersVM : ObservableObject
     {

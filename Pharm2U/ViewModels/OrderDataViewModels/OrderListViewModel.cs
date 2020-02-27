@@ -1,30 +1,31 @@
-﻿using Pharm2U.Services.Data;
+﻿using Pharm2U.Models;
+using Pharm2U.Services.Data;
 using Pharm2U.Services.Data.EntityFramework;
 using Pharm2U.Utilities;
 using System;
 using System.Windows.Input;
 
-namespace Pharm2U.ViewModels.DataViewModels
+namespace Pharm2U.ViewModels.OrderDataViewModels
 {
-    public class CustomerListViewModel : ObservableObject
+    public class OrderListViewModel : ObservableObject
     {
         #region Private Members
 
-        private IDataService<P2U_Customer> _dataService;
+        private IDataService<P2U_Order> _dataService;
 
         /// <summary>
         /// The orders view model
         /// </summary>
-        private CustomersVM _customersVM;
+        private OrdersVM _ordersVM;
 
         #endregion
 
         #region Public Properties
 
-        public CustomersVM CustomersVM
+        public OrdersVM OrdersVM
         {
-            get => _customersVM;
-            set { OnPropertyChanged(ref _customersVM, value); }
+            get => _ordersVM;
+            set { OnPropertyChanged(ref _ordersVM, value); }
         }
         #endregion
 
@@ -33,30 +34,30 @@ namespace Pharm2U.ViewModels.DataViewModels
         /// Default constructor
         /// </summary>
         /// <param name="orderdata">IDataService type for this view model</param>
-        public CustomerListViewModel(IDataService<P2U_Customer> customerdataservice)
+        public OrderListViewModel(IDataService<P2U_Order> orderdataservice)
         {
-            _dataService = customerdataservice;
+            _dataService = orderdataservice;
 
-            CustomersVM = new CustomersVM(customerdataservice);
+            OrdersVM = new OrdersVM(orderdataservice);
 
             // Create our commands associated with this view model
-            LoadCustomersCommand = new RelayCommand(LoadCustomers);
+            LoadOrdersCommand = new RelayCommand(LoadOrders);
 
         }
 
         /// <summary>
         /// Loads the orders to the list
         /// </summary>
-        private void LoadCustomers(object obj)
+        private void LoadOrders(object obj)
         {
-            CustomersVM.LoadCustomers(_dataService.LoadData());
+            OrdersVM.LoadOrders(_dataService.LoadData());
         }
 
         #endregion
 
 
         #region Commands
-        public ICommand LoadCustomersCommand { get; private set; }
+        public ICommand LoadOrdersCommand { get; private set; }
         #endregion
 
 
@@ -75,7 +76,7 @@ namespace Pharm2U.ViewModels.DataViewModels
         {
             string str = String.Empty;
 
-            foreach (P2U_Customer item in _dataService.LoadData())
+            foreach(P2U_Order item in _dataService.LoadData())
             {
                 str += "Item found....";
                 //str += item.Display() + "\n";

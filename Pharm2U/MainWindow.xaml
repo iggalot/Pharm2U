@@ -9,12 +9,20 @@
         xmlns:convert="clr-namespace:Pharm2U.ValueConverters"
         mc:Ignorable="d"
         Title="MainWindow" 
+        WindowState="Maximized"
 
         WindowStartupLocation="CenterScreen"
         >
-    <!--<Window.Resources>
-        <convert:ApplicationToDataModelConverter x:Key="AppToDCConverter"/>
-    </Window.Resources>-->
+    <Window.Resources>
+        <!--<convert:ApplicationToDataModelConverter x:Key="AppToDCConverter"/>-->
+        
+        <!-- Visibility Converters -->
+        <convert:NullToVisibilityConverter x:Key="NullToVisConverter"/>
+        <convert:BoolToCollapsedVisibilityConverter x:Key="BoolToCollapsedVisibilityConverter"/>
+        <convert:InvertedBoolToCollapsedVisibilityConverter x:Key="InvertedBoolToCollapsedVisibilityConverter"/>
+        <convert:BoolToHiddenVisibilityConverter x:Key="BoolToHiddenVisibilityConverter"/>
+        <convert:InvertedBoolToHiddenVisibilityConverter x:Key="InvertedBoolToHiddenConverter"/>
+    </Window.Resources>
     
     <!--<Window.DataContext>
         <vm:ApplicationViewModel />
@@ -57,10 +65,12 @@
 
                 <StackPanel Orientation="Vertical" Grid.Column="1">
                     <TextBlock Text="Details" Background="LightGray" />
+                    <!--<Button Content="Toggle View" Click="Button_Click"/>-->
                     <ScrollViewer 
                         Width="Auto"
                         Height="{Binding RelativeSource={RelativeSource FindAncestor, 
                         AncestorType={x:Type Grid}},Path=ActualHeight}"
+                        Visibility="{Binding IsEditMode, Converter={StaticResource InvertedBoolToCollapsedVisibilityConverter}}"
                         >
                         <Grid>
                             <StackPanel Orientation="Vertical">

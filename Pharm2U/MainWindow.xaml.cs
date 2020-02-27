@@ -15,5 +15,7 @@ namespace Pharm2U
             // Set the data context for the main window
             DataContext = IoC.IoCContainer.Get<ApplicationViewModel>();
         }
+
+        //private void Button_Click(object sender, RoutedEventArgs e) => IoC.IoCContainer.Get<ApplicationViewModel>().IsEditMode ^= true;
     }
 }
