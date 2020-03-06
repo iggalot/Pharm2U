@@ -178,17 +178,18 @@ namespace Pharm2U.ViewModels.EditorViewModels
                         OnPropertyChanged(ref _mEditZip, EditZip);
                         OnPropertyChanged(ref _mAddressInfo, EditAddressInfo);
                     }
+
                     OnPropertyChanged("FullSelectedOrder");
                     OnPropertyChanged("CurrentOrderListVM");
                     OnPropertyChanged("OrdersVM");
                     OnPropertyChanged("CurrentOrderListVM.OrdersVM");
                     OnPropertyChanged("CurrentOrderListVM.OrdersVM.FullSelectedOrder");
 
+                    // Turn off editing mode in the application
+                    IoC.IoCContainer.Get<ApplicationViewModel>().IsEditMode = false;
+
                     break;
                 }
-
-                // Turn off editing mode in the application
-                IoC.IoCContainer.Get<ApplicationViewModel>().IsEditMode = false;
 
 
             }

@@ -69,6 +69,16 @@ namespace Pharm2U.ViewModels.EditorViewModels
         private void SaveChanges(object obj)
         {
             this.SaveData();
+
+            //TODO:  Find a better way to redraw the updated window.  Currently it closes the MainWindow and then recreates it, rather than just
+            //   updating the detailed view only.
+
+            // Close the current main window.
+            Application.Current.MainWindow.Close();
+
+            // And recreate it.
+            Application.Current.MainWindow = new MainWindow();
+            Application.Current.MainWindow.Show();
         }
 
         #endregion
