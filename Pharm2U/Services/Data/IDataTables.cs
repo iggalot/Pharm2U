@@ -1,4 +1,5 @@
 ﻿using Pharm2U.Services.Data.EntityFramework;
+using Pharm2U.Utilities;
 using System;
 
 namespace Pharm2U.Services.Data
@@ -6,30 +7,106 @@ namespace Pharm2U.Services.Data
     /// <summary>
     /// An interface for defining the data tables that the application will need
     /// </summary>
-    public abstract class IDataTables
+    public abstract class IDataTables : ObservableObject
     {
+        #region Private Members
+        private static IDataService<P2U_Order> _mOrderData;
+        private static IDataService<P2U_Customer> _mCustomerData;
+        private static IDataService<P2U_OrderFood> _mOrderFoodData;
+        private static IDataService<P2U_OrderOTCMeds> _mOrderOTCMedData;
+        private static IDataService<P2U_Food> _mFoodData;
+        private static IDataService<P2U_OTCMedication> _mOTCMedData;
+        private static IDataService<P2U_Pharmacy> _mPharmacyData;
+
+        #endregion
         #region Public Properties
         // The order data
-        public IDataService<P2U_Order> OrderData { get; set; }
+        public IDataService<P2U_Order> OrderData
+        {
+            get => _mOrderData;
+            set
+            {
+                _mOrderData = value;
+
+                OnPropertyChanged("OrderData");
+
+            }
+        }
 
         // The customer data
-        public IDataService<P2U_Customer> CustomerData { get; set; }
+        public IDataService<P2U_Customer> CustomerData
+        {
+            get => _mCustomerData;
+            set
+            {
+                _mCustomerData = value;
+
+                OnPropertyChanged("CustomerData");
+
+            }
+        }
 
         // The food data for each order
-        public IDataService<P2U_OrderFood> OrderFoodData { get; set; }
+        public IDataService<P2U_OrderFood> OrderFoodData
+        {
+            get => _mOrderFoodData;
+            set
+            {
+                _mOrderFoodData = value;
+
+                OnPropertyChanged("OrderFoodData");
+
+            }
+        }
 
         // The food data for each order
-        public IDataService<P2U_OrderOTCMeds> OrderOTCMedData { get; set; }
+        public IDataService<P2U_OrderOTCMeds> OrderOTCMedData
+        {
+            get => _mOrderOTCMedData;
+            set
+            {
+                _mOrderOTCMedData = value;
+
+                OnPropertyChanged("OrderOTCMedData");
+            }
+        }
 
 
         // The food data from the database
-        public IDataService<P2U_Food> FoodData { get; set; }
+        public IDataService<P2U_Food> FoodData
+        {
+            get => _mFoodData;
+            set
+            {
+                _mFoodData = value;
+                OnPropertyChanged("FoodData");
+            }
+        }
 
         // The OTC medication data from the database
-        public IDataService<P2U_OTCMedication> OTCMedData { get; set; }
+        public IDataService<P2U_OTCMedication> OTCMedData
+        {
+            get => _mOTCMedData;
+            set
+            {
+                _mOTCMedData = value;
+
+                OnPropertyChanged("OTCMedData");
+
+            }
+        }
 
         // The pharmacy information from the database
-        public IDataService<P2U_Pharmacy> PharmacyData { get; set; }
+        public IDataService<P2U_Pharmacy> PharmacyData 
+        { 
+            get => _mPharmacyData;
+            set {
+                _mPharmacyData = value;
+
+                OnPropertyChanged("PharmacyData");
+
+            }
+        }
 
         // The delivery company information for each order
         public IDataService<P2U_DeliveryCompany> DeliveryCompanyData { get; set; }

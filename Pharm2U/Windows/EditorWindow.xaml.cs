@@ -10,8 +10,7 @@ namespace Pharm2U.Windows
     {
         public EditorWindow()
         {
-            InitializeComponent();
-
+            InitializeComponent();          
         }
     }
 }

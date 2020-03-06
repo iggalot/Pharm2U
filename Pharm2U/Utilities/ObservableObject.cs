@@ -15,7 +15,7 @@ namespace Pharm2U.Utilities
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
-        /// Registers a properry changed event
+        /// Registers a property changed event
         /// </summary>
         /// <param name="propertyName"></param>
         protected virtual void OnPropertyChanged(string propertyName)

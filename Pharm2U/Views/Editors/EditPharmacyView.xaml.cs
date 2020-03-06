@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using Pharm2U.ViewModels.EditorViewModels;
+using System.Windows.Controls;
 
 namespace Pharm2U.Views.Editors
 {

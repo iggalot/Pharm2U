@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Pharm2U.Windows"
         xmlns:editview="clr-namespace:Pharm2U.Views.Editors"
         xmlns:editvm="clr-namespace:Pharm2U.ViewModels.EditorViewModels"
+        xmlns:convert="clr-namespace:Pharm2U.ValueConverters"
         mc:Ignorable="d"
         Title="EditorWindow" Height="450" Width="800">
     <Window.Resources>
@@ -24,13 +25,29 @@
         <DataTemplate x:Name="AdditionalInfoEdit" DataType="{x:Type editvm:EditAdditionalInfoVM}">
             <editview:EditAdditionalInfoView DataContext="{Binding}"/>
         </DataTemplate>
+
+        <!-- Visibility Converters -->
+        <convert:NullToVisibilityConverter x:Key="NullToVisConverter"/>
+        <convert:BoolToCollapsedVisibilityConverter x:Key="BoolToCollapsedVisibilityConverter"/>
+        <convert:InvertedBoolToCollapsedVisibilityConverter x:Key="InvertedBoolToCollapsedVisibilityConverter"/>
+        <convert:BoolToHiddenVisibilityConverter x:Key="BoolToHiddenVisibilityConverter"/>
+        <convert:InvertedBoolToHiddenVisibilityConverter x:Key="InvertedBoolToHiddenConverter"/>
+
     </Window.Resources>
     <DockPanel>
-        <StackPanel DockPanel.Dock="Left" Orientation="Vertical">
-            <Button Content="Save Changes" Width="100" Height="30"/>
-            <Button Content="Cancel" Width="100" Height="30"/>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <Button Content="Save Changes" 
+                    Command="{Binding SaveChangesCommand}" 
+                    Width="100" Height="30"/>
+            <Button Content="Cancel" 
+                    Command="{Binding CancelChangesCommand}" Width="100" Height="30"/>
         </StackPanel>
-        <ContentControl DockPanel.Dock="Left" Content="{Binding}"/>
-
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+            <Label DockPanel.Dock="Bottom" Content="Changes Detected!" 
+               Visibility="{Binding DataHasChanged, Converter={StaticResource BoolToCollapsedVisibilityConverter}}"/>
+            <Label DockPanel.Dock="Bottom" Content="No Changes" 
+               Visibility="{Binding DataHasChanged, Converter={StaticResource InvertedBoolToCollapsedVisibilityConverter}}"/>
+        </StackPanel>
+        <ContentControl DockPanel.Dock="Bottom" Content="{Binding}"/>
     </DockPanel>
 </Window>

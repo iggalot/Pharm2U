@@ -73,8 +73,9 @@
                         Visibility="{Binding IsEditMode, Converter={StaticResource InvertedBoolToCollapsedVisibilityConverter}}"
                         >
                         <Grid>
+                            <!--DataContext="{Binding CurrentOrderListVM.OrdersVM.FullSelectedOrder}"-->
                             <StackPanel Orientation="Vertical">
-                                <v:OrderDetailsView DataContext="{Binding CurrentOrderListVM.OrdersVM.FullSelectedOrder}" 
+                                <v:OrderDetailsView  DataContext="{Binding CurrentOrderListVM.OrdersVM.FullSelectedOrder}"
                                                     VerticalContentAlignment="Top"/>
                             </StackPanel>
                        </Grid>

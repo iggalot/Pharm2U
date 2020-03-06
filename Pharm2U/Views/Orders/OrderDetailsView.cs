@@ -4,6 +4,7 @@ using Pharm2U.ViewModels;
 using Pharm2U.ViewModels.EditorViewModels;
 using Pharm2U.Views.Editors;
 using Pharm2U.Windows;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Pharm2U.Views.Orders
@@ -44,32 +45,9 @@ namespace Pharm2U.Views.Orders
             Button btn = sender as Button;
 
             // Grab our data context for the button that was clicked.
-            FullOrderObjectViewModel context = btn.DataContext as FullOrderObjectViewModel;
+            OrderDetailsViewModel context = btn.DataContext as OrderDetailsViewModel;
 
-            EditorWindow win = new EditorWindow();
-
-            if (btn.Name == "EditCustomer")
-            {
-                win.DataContext = new EditCustomerVM();
-            }
-            if (btn.Name == "EditPharmacy")
-            {
-                win.DataContext = new EditPharmacyVM();
-            }
-            if (btn.Name == "EditOrderFoods")
-            {
-                win.DataContext = new EditOrderFoodVM();
-            }
-            if (btn.Name == "EditOrderOTCMeds")
-            {
-                win.DataContext = new EditOrderOTCMedsVM();
-            }
-            if (btn.Name == "EditAdditionalInfo")
-            {
-                win.DataContext = new EditAdditionalInfoVM();
-            }
-
-            win.Show();
+            EditWindowViewModel vm = new EditWindowViewModel(context, btn.Name);           
         }
 
     }

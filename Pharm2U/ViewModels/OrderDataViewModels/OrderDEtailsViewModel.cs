@@ -13,9 +13,12 @@ namespace Pharm2U.Models.OrderDataViewModels
     /// It's basically one huge table MERGE operation on multiple tables since there are no foreign keys
     /// currently used in the database.
     /// </summary>
-    public class FullOrderObjectViewModel : ObservableObject
+    public class OrderDetailsViewModel : ObservableObject
     {
+        #region Private Members
+        private Pharmacy _mPharmacy;
 
+        #endregion
 
         #region Public Properties
 
@@ -41,14 +44,10 @@ namespace Pharm2U.Models.OrderDataViewModels
         public ObservableCollection<Food> FoodList { get; set; }
 
         /// <summary>
-        /// The OTCMed med items
+        /// The order's OTCMed med items
         /// </summary>
         public ObservableCollection<P2U_OrderOTCMeds> OrderOTCMeds { get; set; }
 
-        /// <summary>
-        /// The assembled food object that is a merge of the P2U_Order and P2U_OTCMed tales
-        /// </summary>
-        /// <param name="num"></param>
 
         /// <summary>
         /// The assembled food object that is a merge of the P2U_Order and P2U_OTCMedication tables.
@@ -59,10 +58,17 @@ namespace Pharm2U.Models.OrderDataViewModels
         /// <summary>
         /// The assembled pharmacy object that contains the merged data for the Address and P2U_Pharmacy data
         /// </summary>
-        public Pharmacy Pharmacy { get; set; }
+        public Pharmacy Pharmacy {
+            get => _mPharmacy; 
+            set {
+                if (value == _mPharmacy)
+                    return;
 
+                _mPharmacy = value;
 
-
+                OnPropertyChanged("Pharmacy");
+            }
+        }
 
 
         /// <summary>
@@ -108,7 +114,7 @@ namespace Pharm2U.Models.OrderDataViewModels
         /// Constructor that creates our full object viuew model
         /// </summary>
         /// <param name="num"></param>
-        public FullOrderObjectViewModel(int num)
+        public OrderDetailsViewModel(int num)
         {
             // retrieve the data tables from the application view model
             IDataTables dt = IoC.IoCContainer.Get<ApplicationViewModel>().DataTables;
@@ -130,7 +136,7 @@ namespace Pharm2U.Models.OrderDataViewModels
             }
             #endregion
 
-            // If no order was found, there shouldnt be any related data in the daatabase
+            // If no order was found, there shouldnt be any related data in the database
             if (!recordFound)
             {
                 MessageBox.Show("No matching record for Order #" + num + "was found");

@@ -15,7 +15,7 @@ namespace Pharm2U.ViewModels.OrderDataViewModels
         /// The currently selected order
         /// </summary>
         private P2U_Order _selectedOrder;
-        private FullOrderObjectViewModel _selectedFullOrder;
+        private OrderDetailsViewModel _selectedFullOrder;
 
         /// <summary>
         /// The data service that was used to create this view model
@@ -29,7 +29,7 @@ namespace Pharm2U.ViewModels.OrderDataViewModels
         /// <summary>
         /// The currently selected order from the list
         /// </summary>
-        public FullOrderObjectViewModel FullSelectedOrder
+        public OrderDetailsViewModel FullSelectedOrder
         {
             get
             {
@@ -43,10 +43,11 @@ namespace Pharm2U.ViewModels.OrderDataViewModels
                     return;
 
                 // Load our full order information from the order ID
-                _selectedFullOrder = new FullOrderObjectViewModel(SelectedOrder.ItemID);
+                _selectedFullOrder = new OrderDetailsViewModel(SelectedOrder.ItemID);
 
                 // Signal that we have changed the selected order from the list
                 OnPropertyChanged(ref _selectedFullOrder, value);
+                OnPropertyChanged("FullSelectedOrder");
             }
         }
 
@@ -67,7 +68,7 @@ namespace Pharm2U.ViewModels.OrderDataViewModels
                 //MessageBox.Show("Order #" + value.ItemID + " selected");
 
                 // Load our full order information from the order ID
-                _selectedFullOrder = new FullOrderObjectViewModel(value.ItemID);
+                _selectedFullOrder = new OrderDetailsViewModel(value.ItemID);
 
                 // Signal that we have changed the selected order from the list
                 OnPropertyChanged(ref _selectedOrder, value);
